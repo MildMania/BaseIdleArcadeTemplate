@@ -325,6 +325,7 @@ MonoBehaviour:
   _unlockableGO: {fileID: 0}
   _lockObjects: {fileID: 0}
   _baseCharacterDetector: {fileID: 6968486723723393949}
+  _hapticType: 1
 --- !u!65 &6968486724384274531
 BoxCollider:
   m_ObjectHideFlags: 0

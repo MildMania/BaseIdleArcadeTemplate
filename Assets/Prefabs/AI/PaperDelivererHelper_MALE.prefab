@@ -192,6 +192,10 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
       objectReference: {fileID: 2264349050522611964}
+    - target: {fileID: 5461130040872443194, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6386894955537829496, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
       propertyPath: _animator
       value: 

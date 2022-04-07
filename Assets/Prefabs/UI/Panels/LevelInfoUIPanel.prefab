@@ -114,7 +114,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 524279
 --- !u!114 &5992789507980018209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +145,6 @@ MonoBehaviour:
   _animateOnAwakeActivation: 1
   _activateSubWidgetsAfterSelf: 0
   _deactivateSubWidgetsAfterSelf: 0
-  _disableCanvasOnDeactivate: 0
   _activationTransitions: []
   _deactivationTransitions: []
   _canvasGroup: {fileID: 0}

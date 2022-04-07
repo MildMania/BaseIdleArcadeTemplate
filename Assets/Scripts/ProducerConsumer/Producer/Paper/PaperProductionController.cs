@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaperProductionController : ProductionController<PaperProducer, Paper>
 {
-	[SerializeField] private GameObject _maxIndicatorObject;
+	// [SerializeField] private GameObject _maxIndicatorObject;
 	private void OnEnable()
 	{
 		StartCoroutine(ProduceRoutine(_resource));
@@ -15,8 +15,8 @@ public class PaperProductionController : ProductionController<PaperProducer, Pap
 		StopAllCoroutines();
 	}
 
-	private void Update()
-	{
-		_maxIndicatorObject.SetActive(!IsAllRequirementMet);
-	}
+	// private void Update()
+	// {
+	// 	_maxIndicatorObject.SetActive(!IsAllRequirementMet);
+	// }
 }

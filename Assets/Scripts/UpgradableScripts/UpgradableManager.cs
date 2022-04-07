@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class UpgradableManager : Singleton<UpgradableManager>
 {
-
     [SerializeField] private CoinController _coinController;
 
     public CoinController CoinController => _coinController;
@@ -15,7 +14,6 @@ public class UpgradableManager : Singleton<UpgradableManager>
     private void Awake()
     {
         _upgradables = GetComponentsInChildren<Upgradable>();
-        
     }
 
     public Upgradable GetUpgradable(EAttributeCategory attributeCategory, EUpgradable upgradableType)

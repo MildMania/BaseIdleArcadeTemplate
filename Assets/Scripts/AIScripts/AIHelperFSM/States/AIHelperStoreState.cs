@@ -64,7 +64,7 @@ public class AIHelperStoreState : State<EState, ETransition>
     private void MoveToStorePoint()
     {
         MoveToInteractionPoint(_currentProducer.AiInteraction.GetInteractionPoint());
-        _helperAnimationController.PlayAnimation(EHelperAnimation.Walk);
+        // _helperAnimationController.PlayAnimation(EHelperAnimation.Walk);
         _aiHelper.CurrentLoadBehaviour.OnCapacityFull += OnCapacityFull;
     }
 
