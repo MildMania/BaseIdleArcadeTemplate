@@ -145,8 +145,6 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
             return true;
         }
 
-        //Debug.Log("Load Capacity: " + _loadCapacity);
-
         return _deliverer.Container.childCount < _loadCapacity;
     }
 

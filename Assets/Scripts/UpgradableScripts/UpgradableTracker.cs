@@ -1,5 +1,4 @@
-﻿using System;
-using MMFramework.TrackerSystem;
+﻿using MMFramework.TrackerSystem;
 
 public class UpgradableTrackable : ITrackable<UpgradableTrackData, EUpgradable>
 {

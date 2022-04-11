@@ -2,7 +2,6 @@
 using MMFramework.MMUI;
 using TMPro;
 using UnityEngine;
-using UnityWeld.Binding;
 
 public class UnlockableTextWidget : WidgetBase
 {

@@ -1,11 +1,6 @@
 using MMFramework.TasksV2;
 using System;
-using System.Linq;
-using Sirenix.Serialization;
 using UnityEngine;
-using WarHeroes.InventorySystem;
-using Countable = MMFramework.InventorySystem.Countable;
-
 
 public interface IUnlockable
 {
@@ -20,9 +15,6 @@ public class Unlockable
 	public int Count { get; private set; }
 
 	private UnlockableTrackData _unlockableTrackData;
-
-	// [OdinSerialize] public IRequirementData[] RequirementData
-	// 	= Array.Empty<IRequirementData>();
 
 	[SerializeField] private MMTaskExecutor _lockedTaskExecutor
 		= new MMTaskExecutor();

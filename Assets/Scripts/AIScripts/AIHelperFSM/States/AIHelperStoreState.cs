@@ -81,8 +81,6 @@ public class AIHelperStoreState : State<EState, ETransition>
 
     private BaseProducer SelectProducer()
     {
-        // float minDist = float.MaxValue;
-
         List<BaseProducer> allProducers = GetProducers();
 
         if (allProducers == null || allProducers.Count == 0)
@@ -94,17 +92,6 @@ public class AIHelperStoreState : State<EState, ETransition>
         var currentProducer = allProducers[index];
 
         _aiHelper.ReserveProducer(currentProducer);
-
-        // foreach (var producer in allProducers)
-        // {
-        //     float dist = (producer.AiInteraction.GetInteractionPoint() - transform.position).magnitude;
-        //
-        //     if (dist < minDist)
-        //     {
-        //         currentProducer = producer;
-        //         minDist = dist;
-        //     }
-        // }
 
         return currentProducer;
     }
