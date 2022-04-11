@@ -28,10 +28,10 @@ public class UnlockableTextWidget : WidgetBase
 		base.OnDestroyCustomActions();
 	}
 
-	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData,float delay)
+	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData)
 	{
 		int totalRequirement = _unlockableObject.Unlockable.GetRequirementCoin();
-		TryUpdateText(oldValue, unlockableTrackData.CurrentCount,totalRequirement,delay);
+		TryUpdateText(oldValue, unlockableTrackData.CurrentCount,totalRequirement,0);
 	}
 
 	private bool TryUpdateText(int oldValue, int currentValue,int totalRequirement,float delay)

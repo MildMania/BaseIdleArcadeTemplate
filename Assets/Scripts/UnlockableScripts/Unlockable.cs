@@ -31,38 +31,15 @@ public class Unlockable
 		= new MMTaskExecutor();
 
 	public Action<bool> OnLockedChanged { get; set; }
-
+	public Action OnLockedValueChanged { get; set; }
 	public void Init(UnlockableTrackData trackData)
 	{
 		_unlockableTrackData = trackData;
 		IsLocked = trackData.IsUnlock;
 		Count = trackData.CurrentCount;
 	}
-	
-	public bool TrySetLocked(
-		User user,
-		bool isLocked)
-	{
-		if (IsLocked == isLocked)
-			return false;
 
-		if (!isLocked
-			&& !TryUnlock(user))
-			return false;
-
-		IsLocked = isLocked;
-
-		if (IsLocked)
-			_lockedTaskExecutor.Execute(null);
-		else
-			_unlockedTaskExecutor.Execute(null);
-
-		OnLockedChanged?.Invoke(IsLocked);
-
-		return true;
-	}
-
-	public bool TryUnlock(User user)
+	public bool TryUnlock(User user,int amount)
 	{
 		var userCoinInventoryData = user.GetUserData<UserCoinInventoryData>();
 
@@ -70,7 +47,6 @@ public class Unlockable
 		
 		Coin trackableCoin;
 		userCoinInventoryData.Tracker.TryGetSingle(ECoin.Gold, out trackableCoin);
-		
 		
 		int totalRequiredAmount = 0;
 			
@@ -83,56 +59,44 @@ public class Unlockable
 
 		totalRequiredAmount -= _unlockableTrackData.CurrentCount;
 
-		if (trackableCoin.TrackData.CurrentCount >= totalRequiredAmount)
+		if (trackableCoin.TrackData.CurrentCount == 0)
+		{
+			if (totalRequiredAmount == 0)
+			{
+				UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
+					_unlockableTrackData.CurrentCount,
+					true);
+				userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
+				return true;
+			}
+			return false;
+		}
+		
+		if (totalRequiredAmount != 0 )
 		{
 			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
-				_unlockableTrackData.CurrentCount + totalRequiredAmount,true);
+				_unlockableTrackData.CurrentCount + amount,false);
 			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
 			
 			CoinTrackData coinTrackData =
 				new CoinTrackData(
 					ECoin.Gold,
-					count: trackableCoin.TrackData.CurrentCount - totalRequiredAmount);
+					count: trackableCoin.TrackData.CurrentCount - amount);
 		
 			trackableCoin.UpdateData(coinTrackData);
-			return true;
+			OnLockedValueChanged?.Invoke();
+			
+			return false;
 		}
 		else
 		{
 			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
-				_unlockableTrackData.CurrentCount + trackableCoin.TrackData.CurrentCount,
-				false);
+				_unlockableTrackData.CurrentCount,
+				true);
 			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
 			
-			CoinTrackData coinTrackData =
-				new CoinTrackData(
-					ECoin.Gold,
-					count: 0);
-		
-			trackableCoin.UpdateData(coinTrackData);
-			
-			return false;
+			return true;
 		}
-	}
-
-	public void ForceSetLocked(
-		bool isLocked,
-		bool invokeTaskExecutors = false)
-	{
-		if (IsLocked == isLocked)
-			return;
-
-		IsLocked = isLocked;
-
-		if (invokeTaskExecutors)
-		{
-			if (IsLocked)
-				_lockedTaskExecutor.Execute(null);
-			else
-				_unlockedTaskExecutor.Execute(null);
-		}
-
-		OnLockedChanged?.Invoke(IsLocked);
 	}
 	
 	public int GetRequirementCoin()

@@ -10,30 +10,32 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 	[OdinSerialize] public Unlockable Unlockable { get; private set; } = new Unlockable();
 
 	[SerializeField] private Guid _guid;
-		
+
 	[SerializeField] private GameObject _unlockableGO;
-	
+
 	[SerializeField] private GameObject _lockObjects;
 
 	[SerializeField] private BaseCharacterDetector _baseCharacterDetector;
 
-	[SerializeField] protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactLight;
+	[SerializeField]
+	protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactLight;
 
 	protected OnHapticRequestedEventRaiser _onHapticRequestedEventRaiser = new OnHapticRequestedEventRaiser();
-	
+
 	protected UnlockableTrackData _unlockableTrackData;
-	
+
 	public Action<UnlockableTrackData> OnUnlockableInit;
-	
-	public Action<int,UnlockableTrackData,float> OnTryUnlock;
+
+	public Action<int, UnlockableTrackData> OnTryUnlock;
 
 	private Coroutine _unlockRoutine;
 
-	
+
 	private void Awake()
 	{
 		_baseCharacterDetector.OnDetected += OnDetected;
 		_baseCharacterDetector.OnEnded += OnEnded;
+		Unlockable.OnLockedValueChanged += OnLockedValueChanged;
 	}
 
 	private void Start()
@@ -51,30 +53,36 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 			unlockableTrackable = new UnlockableTrackable(_unlockableTrackData);
 			UserManager.Instance.LocalUser.GetUserData<UserUnlockableData>().Tracker.TryCreate(unlockableTrackable);
 		}
-		
+
 		Unlockable.Init(_unlockableTrackData);
-		
+
 		OnUnlockableInit?.Invoke(_unlockableTrackData);
-		
+
 		_unlockableGO.SetActive(_unlockableTrackData.IsUnlock);
 		if (_lockObjects != null)
 		{
 			_lockObjects.SetActive(!_unlockableTrackData.IsUnlock);
 		}
+
 		gameObject.SetActive(!_unlockableTrackData.IsUnlock);
-		
+
 		OnStartCustomActions();
 	}
 
 	protected virtual void OnStartCustomActions()
 	{
-		
 	}
 
 	private void OnDestroy()
 	{
 		_baseCharacterDetector.OnDetected -= OnDetected;
 		_baseCharacterDetector.OnEnded -= OnEnded;
+		Unlockable.OnLockedValueChanged -= OnLockedValueChanged;
+	}
+
+	private void OnLockedValueChanged()
+	{
+		_onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
 	}
 
 	private void OnEnded(Character character)
@@ -84,7 +92,6 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	private IEnumerator UnlockRoutine(Character character)
 	{
-
 		while (true)
 		{
 			var movementIdleState = character.GetComponentInChildren<MovementIdleState>();
@@ -100,74 +107,53 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 				yield return null;
 				continue;
 			}
-		
-			TryToUnlock(character);
 
-			yield break;
+			if (TryToUnlock(character))
+			{
+				yield break;
+			}
 
+			yield return null;
 		}
-		
 	}
 
-	private void TryToUnlock(Character character)
+	private bool TryToUnlock(Character character)
 	{
+		bool isUnlock;
 		int oldValue = Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount;
-		float coefficent = 0.002f;
-		float delay;
-		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser))
+		if (Unlockable.TryUnlock(UserManager.Instance.LocalUser, 1))
 		{
-			delay = oldValue * coefficent;
-			if (delay >= 1.5f)
+			_unlockableGO.SetActive(true);
+			gameObject.SetActive(false);
+			if (_lockObjects != null)
 			{
-				delay = 1.5f; //max delay
+				_lockObjects.SetActive(false);
 			}
-			Debug.Log("Unlockable Object Unlock");
-			CoroutineRunner.Instance.WaitForSeconds(delay, () =>
-			{
-				_unlockableGO.SetActive(true);
-				gameObject.SetActive(false);
-				if (_lockObjects != null)
-				{
-					_lockObjects.SetActive(false);
-				}
-				OnDetectedCustomActions();
-				
-			});
+
+			OnDetectedCustomActions();
+			
+			isUnlock = true;
 		}
 		else
 		{
-			delay = (oldValue - (Unlockable.GetRequirementCoin() - _unlockableTrackData.CurrentCount)) * coefficent;
-			if (delay >= 1.5f)
-			{
-				delay = 1.5f; //max delay
-			}
+			isUnlock = false;
 		}
-		
-		
-		StartCoroutine(HapticRoutine(delay));
-		OnTryUnlock?.Invoke(oldValue,_unlockableTrackData,delay);
-		
+
+		OnTryUnlock?.Invoke(oldValue, _unlockableTrackData);
+
 		var coinController = character.GetComponentInChildren<CoinController>();
 		coinController.UpdateCoinCount();
-		
 
 		UserManager.Instance.LocalUser.SaveData(onSavedCallback);
+
 		void onSavedCallback()
 		{
 			Debug.Log("SAVED!!!");
 		}
+
+		return isUnlock;
 	}
 
-	private IEnumerator HapticRoutine(float delay)
-	{
-		float currentTime = 0;
-		while (currentTime<delay)
-		{
-			_onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
-			currentTime += Time.deltaTime;
-			yield return null;
-		}
-	}
 	private void OnDetected(Character character)
 	{
 		_unlockRoutine = StartCoroutine(UnlockRoutine(character));
@@ -175,6 +161,5 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 
 	protected virtual void OnDetectedCustomActions()
 	{
-		
 	}
 }

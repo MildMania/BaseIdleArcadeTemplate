@@ -20,14 +20,14 @@ public class UnlockableFillWidget : FillBarWidget
 		base.AwakeCustomActions();
 	}
 
-	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData,float delay)
+	private void OnTryUnlock(int oldValue, UnlockableTrackData unlockableTrackData)
 	{
 		float requirementCoin = _unlockableObject.Unlockable.GetRequirementCoin();
 		float unlockCount = unlockableTrackData.CurrentCount;
 		float normVal =  MMUtils.Normalize(unlockCount, requirementCoin,
 			0, 1, 0);
 
-		TryUpdateBar(normVal,delay);
+		TryUpdateBar(normVal,0);
 	}
 
 	private void OnUnlockableInit(UnlockableTrackData unlockableTrackData)
