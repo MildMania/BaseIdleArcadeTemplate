@@ -22,8 +22,9 @@ public static class AStarExtensions
     {
         position = default;
 
-
-        NNInfo nodeInfo = AstarPath.active.GetNearest(target);
+        NNConstraint nnConstraint = NNConstraint.Default;
+        nnConstraint.distanceXZ = true;
+        NNInfo nodeInfo = AstarPath.active.GetNearest(target, nnConstraint);
 
         if (isWalkable && !nodeInfo.node.Walkable)
             return false;
