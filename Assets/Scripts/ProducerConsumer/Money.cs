@@ -15,6 +15,7 @@ public class Money : MonoBehaviour, IResource
 
     public void Move(Transform target, Transform container)
     {
+        StopAllCoroutines();
         StartCoroutine(MoveRoutine(target, container));
     }
 
@@ -22,10 +23,10 @@ public class Money : MonoBehaviour, IResource
     {
         float currentTime = 0;
 
-
         var producibleTransform = transform;
         Vector3 position = producibleTransform.position;
-
+        Quaternion rotation = producibleTransform.rotation;
+        producibleTransform.SetParent(container);
 
         while (currentTime < _moveDuration)
         {
@@ -33,6 +34,7 @@ public class Money : MonoBehaviour, IResource
 
             producibleTransform.position = Vector3.Lerp(position,
                 target.position, step);
+            producibleTransform.rotation = Quaternion.Lerp(rotation, target.rotation, step);
 
 
             currentTime += Time.deltaTime;
@@ -40,7 +42,8 @@ public class Money : MonoBehaviour, IResource
         }
 
         producibleTransform.position = target.position;
-        producibleTransform.SetParent(container);
+        producibleTransform.rotation = target.rotation;
+
         OnMoveRoutineFinished?.Invoke(this);
     }
 }

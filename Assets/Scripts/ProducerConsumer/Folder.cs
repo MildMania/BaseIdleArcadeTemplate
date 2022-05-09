@@ -15,6 +15,7 @@ public class Folder : MonoBehaviour, IResource
 	
 	public void Move(Transform target, Transform container)
 	{
+		StopAllCoroutines();
 		StartCoroutine(MoveRoutine(target, container));
 	}
 
@@ -22,17 +23,18 @@ public class Folder : MonoBehaviour, IResource
 	{
 		float currentTime = 0;
 
-
 		var producibleTransform = transform;
 		Vector3 position = producibleTransform.position;
+		Quaternion rotation = producibleTransform.rotation;
 		producibleTransform.SetParent(container);
-		
+
 		while (currentTime < _moveDuration)
 		{
 			float step = currentTime / _moveDuration;
 
 			producibleTransform.position = Vector3.Lerp(position,
 				target.position, step);
+			producibleTransform.rotation = Quaternion.Lerp(rotation, target.rotation, step);
 
 
 			currentTime += Time.deltaTime;
@@ -40,7 +42,8 @@ public class Folder : MonoBehaviour, IResource
 		}
 
 		producibleTransform.position = target.position;
-		
+		producibleTransform.rotation = target.rotation;
+
 		OnMoveRoutineFinished?.Invoke(this);
 	}
 }
