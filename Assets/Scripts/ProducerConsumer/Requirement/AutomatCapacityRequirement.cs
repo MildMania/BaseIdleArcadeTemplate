@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutomatCapacityRequirement : BaseProductionRequirement
+public class AutomatCapacityRequirement : BaseRequirement
 {
 
     [SerializeField] private EAttributeCategory _attributeCategory;
@@ -37,7 +37,7 @@ public class AutomatCapacityRequirement : BaseProductionRequirement
         _automatCapacityUpgradable.OnUpgraded -= OnAutomatCapacityUpgraded;
     }
 
-    public override bool IsProductionRequirementMet()
+    public override bool IsRequirementMet()
     {
         _producedCount = 0;
         _resourceProviders.ForEach(provider =>
@@ -46,8 +46,4 @@ public class AutomatCapacityRequirement : BaseProductionRequirement
         return _producedCount < _produceCapacity;
     }
 
-    public override void ConsumeRequirements(Action onConsumedCallback)
-    {
-        onConsumedCallback();
-    }
 }

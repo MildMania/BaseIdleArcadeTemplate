@@ -9,36 +9,31 @@ using Random = UnityEngine.Random;
 public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 {
     [SerializeField] protected EAttributeCategory _attributeCategory;
-    
     [SerializeField] protected EUpgradable _loadSpeedUpgradeType;
     [SerializeField] protected EUpgradable _loadCapacityUpgradeType;
-    
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
     [SerializeField] protected bool _canLoadUnlimited;
-
     [SerializeField] protected Transform _container;
-
     [SerializeField] protected bool _isActiveOnStart = true;
+    [SerializeField] protected Transform _loadRequirementsTransform;
 
-    [SerializeField] protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
+    [SerializeField]
+    protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
 
     protected OnHapticRequestedEventRaiser _onHapticRequestedEventRaiser = new OnHapticRequestedEventRaiser();
-
-
     protected Upgradable _loadCapacityUpgradable;
-
     protected Upgradable _loadSpeedUpgradable;
-
     protected int _loadCapacity;
-
     protected float _loadDelay;
+    protected bool _isActive = true;
+    protected bool _isUpgradableActive = true;
+    protected BaseRequirement[] _loadRequirements;
 
     public Action OnCapacityEmpty;
     public Action OnCapacityFull;
 
-    protected bool _isActive = true;
-    protected bool _isUpgradableActive = true;
+
     public virtual void StopLoading()
     {
     }
@@ -69,6 +64,11 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
     private void Awake()
     {
+        if (_loadRequirementsTransform != null)
+        {
+            _loadRequirements = _loadRequirementsTransform.GetComponentsInChildren<BaseRequirement>();
+        }
+
         OnAwakeCustomActions();
     }
 
@@ -77,7 +77,9 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
         if (_isUpgradableActive)
         {
             _loadSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadSpeedUpgradeType);
-            _loadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _loadSpeedUpgradable.UpgradableTrackData);
+            _loadDelay =
+                1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory,
+                    _loadSpeedUpgradable.UpgradableTrackData);
             _loadSpeedUpgradable.OnUpgraded += OnLoadSpeedUpgraded;
         }
 
@@ -85,14 +87,14 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
         {
             _loadCapacityUpgradable =
                 UpgradableManager.Instance.GetUpgradable(_attributeCategory, _loadCapacityUpgradeType);
-            
+
             _loadCapacity = (int) GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory,
                 _loadCapacityUpgradable.UpgradableTrackData);
-            
+
             _loadCapacityUpgradable.OnUpgraded += OnLoadCapacityUpgraded;
         }
 
-        if(_isActiveOnStart)
+        if (_isActiveOnStart)
             Activate();
     }
 
@@ -140,12 +142,23 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
 
     private bool CanLoad()
     {
-        if (_canLoadUnlimited)
+        bool canLoad = true;
+
+        if (_loadRequirements != null)
         {
-            return true;
+            for (int i = 0; i < _loadRequirements.Length && canLoad; i++)
+            {
+                canLoad &= _loadRequirements[i].IsRequirementMet();
+            }
         }
 
-        return _deliverer.Container.childCount < _loadCapacity;
+
+        if (!_canLoadUnlimited)
+        {
+            canLoad &= _deliverer.Container.childCount < _loadCapacity;
+        }
+
+        return canLoad;
     }
 
     protected override IEnumerator LoadRoutine()
@@ -174,6 +187,7 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
                         {
                             _onHapticRequestedEventRaiser.Raise(new OnHapticRequestedEventArgs(_hapticType));
                         }
+
                         LoadCustomActions(resource);
                         _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
                     }
@@ -190,11 +204,10 @@ public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBeha
     public override void StopLoading()
     {
         base.StopLoading();
-        
+
         if (!_canLoadUnlimited)
         {
             _loadCapacityUpgradable.OnUpgraded -= OnLoadCapacityUpgraded;
-            
         }
 
         if (_loadSpeedUpgradable != null)

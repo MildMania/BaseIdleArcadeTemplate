@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaperToFolderProductionRequirement : BaseProductionRequirement
+public class PaperToFolderRequirement : BaseRequirement
 {
     [SerializeField] private int _amountNeeded;
     [SerializeField] private PaperProvider _paperProvider;
     [SerializeField] private PaperConsumptionController _paperConsumptionController;
 
-    public override bool IsProductionRequirementMet()
+    public override bool IsRequirementMet()
     {
         List<Paper> papers = _paperProvider.Resources;
         if (!_paperConsumptionController.IsAvailable || papers == null || papers.Count < _amountNeeded)
@@ -19,8 +19,8 @@ public class PaperToFolderProductionRequirement : BaseProductionRequirement
         return true;
     }
 
-    public override void ConsumeRequirements(Action onConsumedCallback)
+    public override void ExecuteRequirement(Action onRequirementExecuted)
     {
-        _paperConsumptionController.StartConsumption(_amountNeeded, onConsumedCallback);
+        _paperConsumptionController.StartConsumption(_amountNeeded, onRequirementExecuted);
     }
 }

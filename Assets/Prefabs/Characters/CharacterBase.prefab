@@ -50,6 +50,7 @@ MonoBehaviour:
   _unloadSpeedUpgradableType: 3
   _isActiveOnStart: 1
   _hapticType: 2
+  _unloadRequirementsTransform: {fileID: 6172928936088107552}
   _folderConsumerFovController: {fileID: 723085994427913071}
 --- !u!114 &4522485724356876269
 MonoBehaviour:
@@ -86,6 +87,7 @@ MonoBehaviour:
   _canLoadUnlimited: 0
   _container: {fileID: 1360490276735447177}
   _isActiveOnStart: 1
+  _loadRequirementsTransform: {fileID: 6246231937164427722}
   _hapticType: 2
   _folderProducerFovController: {fileID: 1043138689413498247}
 --- !u!1 &248085572542776962
@@ -389,6 +391,7 @@ Transform:
   - {fileID: 1475942441291434664}
   - {fileID: 1360490276735447177}
   - {fileID: 4720287474921096593}
+  - {fileID: 8391240201848312134}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -710,6 +713,38 @@ Transform:
   m_Father: {fileID: 9173010147610378951}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1084266748376246109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8391240201848312134}
+  m_Layer: 6
+  m_Name: Requirements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8391240201848312134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084266748376246109}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6246231937164427722}
+  - {fileID: 6172928936088107552}
+  m_Father: {fileID: 9173010147610378951}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1324681486770770825
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +946,9 @@ MonoBehaviour:
     - Name: OnCapacityFull
       Entry: 6
       Data: 
+    - Name: OnFistLoaded
+      Entry: 6
+      Data: 
   _attributeCategory: 1
   _loadSpeedUpgradeType: 1
   _loadCapacityUpgradeType: 2
@@ -919,6 +957,7 @@ MonoBehaviour:
   _canLoadUnlimited: 0
   _container: {fileID: 1360490276735447177}
   _isActiveOnStart: 1
+  _loadRequirementsTransform: {fileID: 6246231937164427722}
   _hapticType: 2
   _paperProducerFovController: {fileID: 3542385565636418112}
 --- !u!114 &8859736292155214051
@@ -939,6 +978,7 @@ MonoBehaviour:
   _unloadSpeedUpgradableType: 3
   _isActiveOnStart: 1
   _hapticType: 2
+  _unloadRequirementsTransform: {fileID: 6172928936088107552}
   _paperConsumerFovController: {fileID: 1618141994417384173}
 --- !u!1 &3340411455920048298
 GameObject:
@@ -984,6 +1024,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currencyObserver: {fileID: 66040308119477117}
+--- !u!1 &3649399263255867030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6246231937164427722}
+  - component: {fileID: 1493233381835947886}
+  m_Layer: 6
+  m_Name: LoadRequirements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6246231937164427722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649399263255867030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8391240201848312134}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1493233381835947886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649399263255867030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478b5d0f50c54443a49ccbfed2b60ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterMovementFsm: {fileID: 8888142152172764264}
+  _targetState: 1
 --- !u!1 &3759674038300368354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1144,51 @@ Transform:
   m_Father: {fileID: 2512425768045590565}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4369059670994825058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6172928936088107552}
+  - component: {fileID: 1057019691213077850}
+  m_Layer: 6
+  m_Name: UnloadRequirements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6172928936088107552
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369059670994825058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8391240201848312134}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1057019691213077850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4369059670994825058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478b5d0f50c54443a49ccbfed2b60ba9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterMovementFsm: {fileID: 8888142152172764264}
+  _targetState: 1
 --- !u!1 &4563619734981050064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,6 +2010,7 @@ MonoBehaviour:
   _canLoadUnlimited: 1
   _container: {fileID: 1360490276735447177}
   _isActiveOnStart: 1
+  _loadRequirementsTransform: {fileID: 6246231937164427722}
   _hapticType: 2
   _coinWorthCollector: {fileID: 2634399202852726416}
   _moneyProducerFovController: {fileID: 7793651401536557702}

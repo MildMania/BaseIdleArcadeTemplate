@@ -9,21 +9,20 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
 {
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected Deliverer _deliverer;
-    protected Upgradable _unloadSpeedUpgradable;
-
     [SerializeField] protected EAttributeCategory _attributeCategory;
     [SerializeField] protected EUpgradable _unloadSpeedUpgradableType;
-
     [SerializeField] protected bool _isActiveOnStart = true;
 
-    [SerializeField] protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
+    [SerializeField]
+    protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
 
+    [SerializeField] protected Transform _unloadRequirementsTransform;
+
+    protected Upgradable _unloadSpeedUpgradable;
     protected OnHapticRequestedEventRaiser _onHapticRequestedEventRaiser = new OnHapticRequestedEventRaiser();
-
-
     protected float _unloadDelay;
-
     protected bool _isActive = true;
+    protected BaseRequirement[] _unloadRequirements;
 
     public void StopUnloading()
     {
@@ -56,21 +55,29 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
 
     private void Awake()
     {
+        if (_unloadRequirementsTransform != null)
+        {
+            _unloadRequirements = _unloadRequirementsTransform.GetComponentsInChildren<BaseRequirement>();
+        }
+
         OnAwakeCustomActions();
     }
 
     private void Start()
     {
-        _unloadSpeedUpgradable = UpgradableManager.Instance.GetUpgradable(_attributeCategory, _unloadSpeedUpgradableType);
+        _unloadSpeedUpgradable =
+            UpgradableManager.Instance.GetUpgradable(_attributeCategory, _unloadSpeedUpgradableType);
 
-        _unloadDelay = 1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory, _unloadSpeedUpgradable.UpgradableTrackData);
-        
+        _unloadDelay =
+            1 / GameConfigManager.Instance.GetAttributeUpgradeValue(_attributeCategory,
+                _unloadSpeedUpgradable.UpgradableTrackData);
+
         _unloadSpeedUpgradable.OnUpgraded += OnUnloadSpeedUpgraded;
 
-        if(_isActiveOnStart)
-            Activate();        
+        if (_isActiveOnStart)
+            Activate();
     }
-    
+
     protected virtual void OnAwakeCustomActions()
     {
     }
@@ -101,7 +108,22 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
     {
         _consumers.Remove(producer);
     }
-    
+
+    private bool CanUnload()
+    {
+        bool canLoad = true;
+
+        if (_unloadRequirements != null)
+        {
+            for (int i = 0; i < _unloadRequirements.Length && canLoad; i++)
+            {
+                canLoad &= _unloadRequirements[i].IsRequirementMet();
+            }
+        }
+
+
+        return canLoad;
+    }
 
     protected override IEnumerator UnloadRoutine()
     {
@@ -113,7 +135,7 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
 
             if (_isActive && currentTime > _unloadDelay)
             {
-                if (_consumers.Count > 0)
+                if (_consumers.Count > 0 && CanUnload())
                 {
                     int index = (int) Random.Range(0, _consumers.Count - 0.1f);
                     if (_deliverer.Resources.Count > 0)

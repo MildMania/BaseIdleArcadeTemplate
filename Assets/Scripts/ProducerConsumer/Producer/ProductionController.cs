@@ -7,7 +7,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
 {
     [SerializeField] protected TProducer _producer;
     [SerializeField] protected TResource _resource;
-    [SerializeField] private BaseProductionRequirement[] _productionRequirements;
+    [SerializeField] private BaseRequirement[] _productionRequirements;
     
     [SerializeField] private float _productionDelay;
     protected bool IsAllRequirementMet;
@@ -60,7 +60,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
     {
         foreach (var productionRequirement in _productionRequirements)
         {
-            if (!productionRequirement.IsProductionRequirementMet())
+            if (!productionRequirement.IsRequirementMet())
             {
                 return false;
             }
@@ -78,7 +78,7 @@ public class ProductionController<TProducer, TResource> : MonoBehaviour where TP
 
         foreach (var productionRequirement in _productionRequirements)
         {
-            productionRequirement.ConsumeRequirements(onConsumedCallback);
+            productionRequirement.ExecuteRequirement(onConsumedCallback);
         }
     }
 }
