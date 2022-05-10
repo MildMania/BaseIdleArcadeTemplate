@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class Money : MonoBehaviour, IResource
+public class Money :  BaseResource
 {
     private float _moveDuration = 0.05f;
 
@@ -11,9 +10,7 @@ public class Money : MonoBehaviour, IResource
         StopAllCoroutines();
     }
 
-    public Action<IResource> OnMoveRoutineFinished { get; set; }
-
-    public void Move(Transform target, Transform container)
+    public override void Move(Transform target, Transform container)
     {
         StopAllCoroutines();
         StartCoroutine(MoveRoutine(target, container));

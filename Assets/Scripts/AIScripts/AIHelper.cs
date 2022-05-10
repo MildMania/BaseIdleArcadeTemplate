@@ -2,15 +2,13 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
-using MMFramework.Utilities;
-
 public class AIHelper : SerializedMonoBehaviour
 {
-    [OdinSerialize] private IResource _resource;
-    public IResource Resource => _resource;
+    [OdinSerialize] private BaseResource _baseResource;
+    public BaseResource BaseResource => _baseResource;
 
-    [OdinSerialize] private Dictionary<IResource, BaseLoadBehaviour> _resourceToLoadBehaviour;
-    [OdinSerialize] private Dictionary<IResource, BaseUnloadBehaviour> _resourceToUnloadBehaviour;
+    [OdinSerialize] private Dictionary<BaseResource, BaseLoadBehaviour> _resourceToLoadBehaviour;
+    [OdinSerialize] private Dictionary<BaseResource, BaseUnloadBehaviour> _resourceToUnloadBehaviour;
 
     private BaseLoadBehaviour _currentLoadBehaviour;
     public BaseLoadBehaviour CurrentLoadBehaviour => _currentLoadBehaviour;
@@ -23,7 +21,7 @@ public class AIHelper : SerializedMonoBehaviour
     {
         foreach (var item in _resourceToLoadBehaviour)
         {
-            if (!item.Key.Equals(_resource))
+            if (!item.Key.Equals(_baseResource))
             {
                 item.Value.StopLoading();
             }
@@ -36,7 +34,7 @@ public class AIHelper : SerializedMonoBehaviour
 
         foreach (var item in _resourceToUnloadBehaviour)
         {
-            if (!item.Key.Equals(_resource))
+            if (!item.Key.Equals(_baseResource))
             {
                 item.Value.StopUnloading();
             }
@@ -50,31 +48,31 @@ public class AIHelper : SerializedMonoBehaviour
 
     public List<BaseConsumer> GetConsumers()
     {
-        return ConsumerProvider.Instance.GetConsumers(_resource.GetType());
+        return ConsumerProvider.Instance.GetConsumers(_baseResource.GetType());
     }
 
     public List<BaseProducer> GetProducers()
     {
-        return ProducerProvider.Instance.GetProducers(_resource.GetType());
+        return ProducerProvider.Instance.GetProducers(_baseResource.GetType());
     }
 
     public void ReserveProducer(BaseProducer producer)
     {
-        ProducerProvider.Instance.ReserveProducer(_resource.GetType(), producer);
+        ProducerProvider.Instance.ReserveProducer(_baseResource.GetType(), producer);
     }
 
     public void ReleaseProducer(BaseProducer producer)
     {
-        ProducerProvider.Instance.ReleaseProducer(_resource.GetType(), producer);
+        ProducerProvider.Instance.ReleaseProducer(_baseResource.GetType(), producer);
     }
 
     public void ReserveConsumer(BaseConsumer consumer)
     {
-        ConsumerProvider.Instance.ReserveConsumer(_resource.GetType(), consumer); 
+        ConsumerProvider.Instance.ReserveConsumer(_baseResource.GetType(), consumer); 
     }
 
     public void ReleaseConsumer(BaseConsumer consumer)
     {
-        ConsumerProvider.Instance.ReleaseConsumer(_resource.GetType(), consumer);
+        ConsumerProvider.Instance.ReleaseConsumer(_baseResource.GetType(), consumer);
     }
 }

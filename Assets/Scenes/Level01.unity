@@ -1058,14 +1058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIHelperBase
       objectReference: {fileID: 0}
-    - target: {fileID: 3996101990973930705, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 3996101990973930705, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
-    - target: {fileID: 4093049728104930547, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: 4093049728104930547, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
+    - target: {fileID: 3734376035419674945, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4706862737783256158, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
       propertyPath: serializationData.Prefab
       value: 
@@ -1076,7 +1072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4706862737783256158, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
-      value: '"path":"_resource","value":$eref:0'
+      value: '"path":"_baseResource","value":$eref:0'
       objectReference: {fileID: 0}
     - target: {fileID: 4706862737783256158, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
@@ -1085,24 +1081,13 @@ PrefabInstance:
     - target: {fileID: 4706862737783256158, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 919750946}
-    - target: {fileID: 7884015824009175898, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
+      objectReference: {fileID: 2405108964789666060, guid: 6d87abb0713d4e746a320ec6bc22cabc, type: 3}
+    - target: {fileID: 0}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 7884015824009175898, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
---- !u!114 &919750946 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8260683181702029858, guid: 4b6af44f751f3d046be65f3943741f16, type: 3}
-  m_PrefabInstance: {fileID: 919750945}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4636a139e74cd49567c91b6a2c6ec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1045022684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2391,7 +2376,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-245044
+  m_Name: pb_Mesh-86100
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2601,6 +2586,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1941376292}
     - target: {fileID: 128542863205296368, guid: 6bcceb49e9ec07c4484f1578aeed64f3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128542863205296368, guid: 6bcceb49e9ec07c4484f1578aeed64f3, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2623,6 +2612,10 @@ PrefabInstance:
     - target: {fileID: 128542863719392403, guid: 6bcceb49e9ec07c4484f1578aeed64f3, type: 3}
       propertyPath: m_Name
       value: PaperProducer
+      objectReference: {fileID: 0}
+    - target: {fileID: 128542863719392403, guid: 6bcceb49e9ec07c4484f1578aeed64f3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 128542863719392403, guid: 6bcceb49e9ec07c4484f1578aeed64f3, type: 3}
       propertyPath: m_StaticEditorFlags

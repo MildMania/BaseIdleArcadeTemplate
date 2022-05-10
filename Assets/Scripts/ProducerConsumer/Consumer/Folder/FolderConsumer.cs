@@ -10,11 +10,12 @@ public class FolderConsumer : BaseConsumer<Folder>
         Debug.Log("FOLDER CONSUMED");
     }
 
-    private void OnMoveRoutineFinished(IResource resource)
+    private void OnMoveRoutineFinished(BaseResource baseResource)
     {
-        Folder folder = (Folder) resource;
+        Folder folder = (Folder) baseResource;
         folder.OnMoveRoutineFinished -= OnMoveRoutineFinished;
-        folder.gameObject.SetActive(false);
+        folder.GOPoolObject.Push();
+        // folder.gameObject.SetActive(false);
         OnConsumeFinished?.Invoke(this, folder);
     }
 }

@@ -1,8 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
-public class Paper : MonoBehaviour, IResource
+public class Paper : BaseResource
 {
     private float _moveDuration = 0.5f;
 
@@ -11,9 +10,7 @@ public class Paper : MonoBehaviour, IResource
         StopAllCoroutines();
     }
 
-    public Action<IResource> OnMoveRoutineFinished { get; set; }
-
-    public void Move(Transform target, Transform container)
+    public override void Move(Transform target, Transform container)
     {
         StopAllCoroutines();
         StartCoroutine(MoveRoutine(target, container));

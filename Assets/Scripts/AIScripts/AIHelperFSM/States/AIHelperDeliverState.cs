@@ -60,7 +60,7 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     protected List<BaseConsumer> GetConsumers()
     {
-        return ConsumerProvider.Instance.GetConsumers(_aiHelper.Resource.GetType());
+        return ConsumerProvider.Instance.GetConsumers(_aiHelper.BaseResource.GetType());
     }
 
     public override void OnEnterCustomActions()

@@ -98,7 +98,7 @@ public class AIHelperStoreState : State<EState, ETransition>
 
     protected List<BaseProducer> GetProducers()
     {
-        return ProducerProvider.Instance.GetProducers(_aiHelper.Resource.GetType());
+        return ProducerProvider.Instance.GetProducers(_aiHelper.BaseResource.GetType());
     }
 
     private void MoveToInteractionPoint(Vector3 pos)

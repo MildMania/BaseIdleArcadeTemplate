@@ -7,7 +7,7 @@ public abstract class BaseProducer : MonoBehaviour
 }
 
 public abstract class BaseProducer<TResource> : BaseProducer, IProducer<TResource>
-    where TResource : IResource
+    where TResource : BaseResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _resourceProvider;
 
@@ -16,7 +16,7 @@ public abstract class BaseProducer<TResource> : BaseProducer, IProducer<TResourc
         _resourceProvider.Resources.Add(ProduceCustomActions(resource));
     }
 
-    public abstract TResource ProduceCustomActions(TResource folder);
+    public abstract TResource ProduceCustomActions(TResource paper);
 
 
     public bool TryRemoveAndGetLastResource(ref TResource lastResource)

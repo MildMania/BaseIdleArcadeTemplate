@@ -8,7 +8,7 @@ public abstract class BaseResourceProvider : MonoBehaviour
     public abstract int GetResourceCount();
 }
 
-public abstract class BaseResourceProvider<TResource> : BaseResourceProvider where TResource : IResource
+public abstract class BaseResourceProvider<TResource> : BaseResourceProvider where TResource : BaseResource
 {
     public List<TResource> Resources { get; } = new List<TResource>();
 

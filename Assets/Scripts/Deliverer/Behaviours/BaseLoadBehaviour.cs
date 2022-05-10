@@ -57,7 +57,7 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
 
 public abstract class BaseLoadBehaviour<TBaseProducer, TResource> : BaseLoadBehaviour
     where TBaseProducer : BaseProducer<TResource>
-    where TResource : IResource
+    where TResource : BaseResource
 {
     private List<TBaseProducer> _producers = new List<TBaseProducer>();
 

@@ -10,11 +10,12 @@ public class PaperConsumer : BaseConsumer<Paper>
         paper.OnMoveRoutineFinished += OnMoveRoutineFinished;
     }
 
-    private void OnMoveRoutineFinished(IResource resource)
+    private void OnMoveRoutineFinished(BaseResource baseResource)
     {
-        Paper paper = (Paper) resource;
+        Paper paper = (Paper) baseResource;
         paper.OnMoveRoutineFinished -= OnMoveRoutineFinished;
-        paper.gameObject.SetActive(false);
+        paper.GOPoolObject.Push();
+        // paper.gameObject.SetActive(false);
         Debug.Log("PAPER CONSUMED");
         OnConsumeFinished?.Invoke(this, paper);
     }

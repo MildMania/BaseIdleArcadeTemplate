@@ -8,7 +8,7 @@ using UnityEngine;
 //}
 
 public class ConsumptionController<TConsumer, TResource> : MonoBehaviour where TConsumer : BaseConsumer<TResource>
-    where TResource : IResource
+    where TResource : BaseResource
 {
     [SerializeField] protected TConsumer _consumer;
     [SerializeField] private BaseResourceProvider<TResource> _resourceProvider;

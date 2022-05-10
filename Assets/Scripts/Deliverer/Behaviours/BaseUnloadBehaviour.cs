@@ -48,7 +48,7 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
 
 public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnloadBehaviour
     where TBaseConsumer : BaseConsumer<TResource>
-    where TResource : IResource
+    where TResource : BaseResource
 {
     protected List<TBaseConsumer> _consumers = new List<TBaseConsumer>();
 

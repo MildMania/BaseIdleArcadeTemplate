@@ -58,7 +58,7 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
         paperConsumer.ResourceProvider.Resources.Add(paper);
     }
 
-    private void OnMoveRoutineFinished(IResource paper)
+    private void OnMoveRoutineFinished(BaseResource paper)
     {
         paper.OnMoveRoutineFinished -= OnMoveRoutineFinished;
         _updatedFormationController.UpdateResourcesPosition(_deliverer.Container);

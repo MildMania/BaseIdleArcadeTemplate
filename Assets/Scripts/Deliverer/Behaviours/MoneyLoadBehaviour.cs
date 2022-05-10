@@ -29,9 +29,9 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
         resource.Move(_deliverer.transform, null);
     }
 
-    private void OnMoveRoutineFinished(IResource resource)
+    private void OnMoveRoutineFinished(BaseResource baseResource)
     {
-        Money money = (Money) resource;
+        Money money = (Money) baseResource;
         money.gameObject.SetActive(false);
         money.OnMoveRoutineFinished -= OnMoveRoutineFinished;
         var worthDefiner = money.GetComponent<CoinWorthDefiner>();

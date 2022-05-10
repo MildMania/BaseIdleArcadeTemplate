@@ -11,7 +11,7 @@ public abstract class BaseConsumer : MonoBehaviour
 }
 
 public abstract class BaseConsumer<TResource> : BaseConsumer, IConsumer<TResource>
-    where TResource : IResource
+    where TResource : BaseResource
 {
     [SerializeField] protected BaseResourceProvider<TResource> _baseResourceProvider;
 
@@ -27,7 +27,7 @@ public abstract class BaseConsumer<TResource> : BaseConsumer, IConsumer<TResourc
     {
         ResourceProvider.Resources.Remove(resource);
         ConsumeCustomActions(resource);
-        _updatedFormationController.RemoveAndGetLastTransform();
+        _updatedFormationController.RemoveLastTransform();
     }
 
     public abstract void ConsumeCustomActions(TResource resource);

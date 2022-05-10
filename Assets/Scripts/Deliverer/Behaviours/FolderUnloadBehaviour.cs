@@ -49,7 +49,7 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		folderConsumer.ResourceProvider.Resources.Add(folder);
 	}
 
-	private void OnMoveRoutineFinished(IResource folder)
+	private void OnMoveRoutineFinished(BaseResource folder)
 	{
 		folder.OnMoveRoutineFinished -= OnMoveRoutineFinished;
 		_updatedFormationController.UpdateResourcesPosition(_deliverer.Container);

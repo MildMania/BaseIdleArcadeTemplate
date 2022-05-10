@@ -15,7 +15,7 @@ public class Deliverer : MonoBehaviour
         set => _updatedFormationController = value;
     }
 
-    public List<IResource> Resources { get; set; } = new List<IResource>();
+    public List<BaseResource> Resources { get; set; } = new List<BaseResource>();
 
     public int GetLastResourceIndex<TResource>()
     {

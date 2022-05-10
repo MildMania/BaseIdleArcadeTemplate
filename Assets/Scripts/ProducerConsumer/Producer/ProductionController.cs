@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 
 public class ProductionController<TProducer, TResource> : MonoBehaviour where TProducer : BaseProducer<TResource>
-    where TResource : IResource
+    where TResource : BaseResource
 {
     [SerializeField] protected TProducer _producer;
     [SerializeField] protected TResource _resource;

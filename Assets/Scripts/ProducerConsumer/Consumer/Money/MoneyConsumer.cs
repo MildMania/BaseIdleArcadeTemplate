@@ -1,7 +1,7 @@
 public class MoneyConsumer : BaseConsumer<Money>
 {
-    public override void ConsumeCustomActions(Money folder)
+    public override void ConsumeCustomActions(Money money)
     {
-        throw new System.NotImplementedException();
+        money.GOPoolObject.Push();
     }
 }
