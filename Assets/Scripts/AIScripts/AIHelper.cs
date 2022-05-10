@@ -21,7 +21,7 @@ public class AIHelper : SerializedMonoBehaviour
     {
         foreach (var item in _resourceToLoadBehaviour)
         {
-            if (!item.Key.Equals(_baseResource))
+            if (item.Key.GetType() != _baseResource.GetType())
             {
                 item.Value.StopLoading();
             }
@@ -34,7 +34,7 @@ public class AIHelper : SerializedMonoBehaviour
 
         foreach (var item in _resourceToUnloadBehaviour)
         {
-            if (!item.Key.Equals(_baseResource))
+            if (item.Key.GetType() != _baseResource.GetType())
             {
                 item.Value.StopUnloading();
             }
