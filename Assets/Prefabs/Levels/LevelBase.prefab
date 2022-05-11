@@ -2227,6 +2227,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.08860929
       objectReference: {fileID: 0}
+    - target: {fileID: 8216244519556282691, guid: f302ce7cd729fb241a2ef321aa4a7fd3, type: 3}
+      propertyPath: m_Name
+      value: ResourcePoolManager
+      objectReference: {fileID: 0}
     - target: {fileID: 8569582653405050676, guid: f302ce7cd729fb241a2ef321aa4a7fd3, type: 3}
       propertyPath: m_Waypoints.Array.data[0].position.x
       value: 0

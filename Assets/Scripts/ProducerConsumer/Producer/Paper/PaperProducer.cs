@@ -4,12 +4,12 @@ public class PaperProducer : BaseProducer<Paper>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
 
-    public override Paper ProduceCustomActions(Paper paper)
+    public override Paper ProduceCustomActions(Paper folder)
     {
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(paper.transform);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(folder.transform);
 
-        Paper clonedPaper = PaperPoolManager.Instance.LoadResource();
-        var paperTransform = paper.transform;
+        Paper clonedPaper = (Paper) ResourcePoolManager.Instance.LoadResource(folder);
+        var paperTransform = folder.transform;
         clonedPaper.transform.SetPositionAndRotation(paperTransform.position, paperTransform.rotation);
         clonedPaper.gameObject.SetActive(true);
         // Paper clonedPaper = Instantiate(folder, folder.transform.position, folder.transform.rotation);

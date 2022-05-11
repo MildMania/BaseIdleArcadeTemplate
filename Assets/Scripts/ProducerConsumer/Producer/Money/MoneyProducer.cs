@@ -4,12 +4,12 @@ public class MoneyProducer : BaseProducer<Money>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
 
-    public override Money ProduceCustomActions(Money money)
+    public override Money ProduceCustomActions(Money folder)
     {
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(money.transform);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(folder.transform);
 
-        Money clonedMoney = MoneyPoolManager.Instance.LoadResource();
-        var moneyTransform = money.transform;
+        Money clonedMoney = ResourcePoolManager.Instance.LoadResource(folder) as Money;
+        var moneyTransform = folder.transform;
         clonedMoney.transform.SetPositionAndRotation(moneyTransform.position, moneyTransform.rotation);
         clonedMoney.gameObject.SetActive(true);
         // Folder clonedFolder = Instantiate(folder, folder.transform.position, folder.transform.rotation);
