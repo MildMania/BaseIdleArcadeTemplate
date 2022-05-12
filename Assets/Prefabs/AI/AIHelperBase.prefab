@@ -254,6 +254,7 @@ MonoBehaviour:
   _unloadSpeedUpgradableType: 6
   _isActiveOnStart: 0
   _hapticType: 2
+  _unloadRequirementsTransform: {fileID: 0}
   _folderConsumerFovController: {fileID: 5790364403680320723}
 --- !u!114 &1286604798718278388
 MonoBehaviour:
@@ -290,6 +291,7 @@ MonoBehaviour:
   _canLoadUnlimited: 0
   _container: {fileID: 4274420019230216113}
   _isActiveOnStart: 0
+  _loadRequirementsTransform: {fileID: 0}
   _hapticType: 2
   _folderProducerFovController: {fileID: 3419851049315108552}
 --- !u!1 &1497660256541341506
@@ -737,8 +739,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
@@ -825,17 +827,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: _resource
-      Entry: 10
-      Data: 0
+    - Name: _baseResource
+      Entry: 6
+      Data: 
     - Name: _resourceToLoadBehaviour
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[IResource, Assembly-CSharp],[BaseLoadBehaviour,
+      Data: 0|System.Collections.Generic.Dictionary`2[[BaseResource, Assembly-CSharp],[BaseLoadBehaviour,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[IResource, Assembly-CSharp]],
-        mscorlib
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[BaseResource,
+        Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -874,15 +876,11 @@ MonoBehaviour:
       Data: 
     - Name: _resourceToUnloadBehaviour
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[IResource, Assembly-CSharp],[BaseUnloadBehaviour,
+      Data: 2|System.Collections.Generic.Dictionary`2[[BaseResource, Assembly-CSharp],[BaseUnloadBehaviour,
         Assembly-CSharp]], mscorlib
     - Name: comparer
-      Entry: 7
-      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[IResource, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
+      Entry: 9
+      Data: 1
     - Name: 
       Entry: 12
       Data: 2
@@ -1281,6 +1279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3760926991299660484}
   - component: {fileID: 8260683181702029858}
+  - component: {fileID: 1963101754417793413}
   m_Layer: 17
   m_Name: Paper
   m_TagString: Untagged
@@ -1314,6 +1313,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4636a139e74cd49567c91b6a2c6ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1963101754417793413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6935678265850301138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aada09b0e6f5cc74b951f82c3760fdd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDebugEnabled: 0
+  _pushOnDisable: 1
+  _setActiveFalseOnPush: 1
+  _poppedTaskExecutor:
+    _taskCarrier: {fileID: 0}
+  _pushedTaskExecutor:
+    _taskCarrier: {fileID: 0}
 --- !u!1 &7761987860825528392
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,6 +1703,7 @@ MonoBehaviour:
   _canLoadUnlimited: 0
   _container: {fileID: 4274420019230216113}
   _isActiveOnStart: 0
+  _loadRequirementsTransform: {fileID: 0}
   _hapticType: 2
   _paperProducerFovController: {fileID: 4918007575379483990}
 --- !u!114 &6734664406479944683
@@ -1705,6 +1724,7 @@ MonoBehaviour:
   _unloadSpeedUpgradableType: 6
   _isActiveOnStart: 0
   _hapticType: 2
+  _unloadRequirementsTransform: {fileID: 0}
   _paperConsumerFovController: {fileID: 2100999408035901779}
 --- !u!1 &9025901034665327267
 GameObject:
@@ -1716,6 +1736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4108730026319633285}
   - component: {fileID: 850410296380798066}
+  - component: {fileID: 4908077812649724408}
   m_Layer: 17
   m_Name: Folder
   m_TagString: Untagged
@@ -1749,6 +1770,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edc5fd56810431a9ad840b6e5fc6791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4908077812649724408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9025901034665327267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aada09b0e6f5cc74b951f82c3760fdd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDebugEnabled: 0
+  _pushOnDisable: 1
+  _setActiveFalseOnPush: 1
+  _poppedTaskExecutor:
+    _taskCarrier: {fileID: 0}
+  _pushedTaskExecutor:
+    _taskCarrier: {fileID: 0}
 --- !u!1001 &5495356551543126737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1822,14 +1862,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2e57f2db778efb418bb605a6a08eedc, type: 3}
---- !u!4 &5461130040872443194 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d2e57f2db778efb418bb605a6a08eedc, type: 3}
-  m_PrefabInstance: {fileID: 5495356551543126737}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4648282691271837568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d2e57f2db778efb418bb605a6a08eedc, type: 3}
+  m_PrefabInstance: {fileID: 5495356551543126737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5461130040872443194 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d2e57f2db778efb418bb605a6a08eedc, type: 3}
   m_PrefabInstance: {fileID: 5495356551543126737}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &1908210382524203826

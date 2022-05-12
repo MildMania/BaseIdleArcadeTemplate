@@ -16,7 +16,7 @@ public abstract class BaseProducer<TResource> : BaseProducer, IProducer<TResourc
         _resourceProvider.Resources.Add(ProduceCustomActions(resource));
     }
 
-    public abstract TResource ProduceCustomActions(TResource folder);
+    public abstract TResource ProduceCustomActions(TResource money);
 
 
     public bool TryRemoveAndGetLastResource(ref TResource lastResource)

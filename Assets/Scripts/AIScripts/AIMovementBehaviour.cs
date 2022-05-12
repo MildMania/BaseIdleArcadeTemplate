@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 using Pathfinding;
 
 public class AIMovementBehaviour : MonoBehaviour
@@ -17,8 +15,8 @@ public class AIMovementBehaviour : MonoBehaviour
 
     private float _movementSpeed;
 
-    private System.Action _currentPathCompletedCallback;
-    private System.Action _currentPathStuckedCallback;
+    private Action _currentPathCompletedCallback;
+    private Action _currentPathStuckedCallback;
 
     private Upgradable _helperSpeedUpgradable;
 
@@ -65,11 +63,10 @@ public class AIMovementBehaviour : MonoBehaviour
     {
         var path = _seeker.StartPath(_rootTransform.position, targetPos);
         yield return StartCoroutine(path.WaitForPath());
-        _aIPath.SetPath(path);
     }
 
-    public void MoveDestination(Vector3 targetPos, System.Action onPathCompletedCallback = null,
-        System.Action onPathStuckedCallback = null)
+    public void MoveDestination(Vector3 targetPos, Action onPathCompletedCallback = null,
+        Action onPathStuckedCallback = null)
     {
         _aIPath.isStopped = false;
 
