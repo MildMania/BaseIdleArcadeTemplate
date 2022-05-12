@@ -11,20 +11,15 @@ using DG.Tweening;
 
 public class AIHelperStoreState : State<EState, ETransition>
 {
-    [SerializeField] private RVOController _rvoController;
     [SerializeField] private AIHelper _aiHelper;
-
     [SerializeField] protected AIMovementBehaviour _movementBehaviour;
     [SerializeField] protected MMTaskExecutor _onMovementCompletedTasks;
     [SerializeField] private HelperAnimationController _helperAnimationController;
     [SerializeField] private float _pollDelay = 5;
-
     [SerializeField] private HelperAnimationController _animationController;
 
     private BaseProducer _currentProducer;
     private WaitForSeconds _pollWfs;
-
-    private Vector3 _lastPos;
 
     private void Awake()
     {
@@ -71,11 +66,7 @@ public class AIHelperStoreState : State<EState, ETransition>
     protected override void OnExitCustomActions()
     {
         _aiHelper.CurrentLoadBehaviour.OnCapacityFull -= OnCapacityFull;
-
-        _rvoController.locked = false;
-
         _aiHelper.CurrentLoadBehaviour.Deactivate();
-
         _aiHelper.ReleaseProducer(_currentProducer);
     }
 
@@ -103,21 +94,15 @@ public class AIHelperStoreState : State<EState, ETransition>
 
     private void MoveToInteractionPoint(Vector3 pos)
     {
-        _lastPos = pos;
-
         _movementBehaviour.MoveDestination(pos, OnPathCompleted, OnPathStucked);
     }
 
     private void OnPathCompleted()
     {
-        _rvoController.locked = true;
-
         Vector3 rotTarget = _currentProducer.AiInteraction.RotationTarget.position;
-
         Vector3 dir = (new Vector3(rotTarget.x, _aiHelper.transform.position.y, rotTarget.z) - _aiHelper.transform.position).normalized;
 
         _aiHelper.transform.DORotateQuaternion(Quaternion.LookRotation(dir), 0.1f);
-
         _aiHelper.CurrentLoadBehaviour.Activate();
 
         if (_onMovementCompletedTasks != null)

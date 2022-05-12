@@ -931,7 +931,7 @@ MonoBehaviour:
   heightBackingField: 2
   centerBackingField: 1
   locked: 0
-  lockWhenNotMoving: 0
+  lockWhenNotMoving: 1
   agentTimeHorizon: 1
   obstacleTimeHorizon: 2
   maxNeighbours: 10

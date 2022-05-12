@@ -11,8 +11,6 @@ using DG.Tweening;
 
 public class AIHelperDeliverState : State<EState, ETransition>
 {
-    [SerializeField] private RVOController _rvoController;
-
     [SerializeField] private AIHelper _aiHelper;
 
     [SerializeField] private AIMovementBehaviour _movementBehaviour;
@@ -90,8 +88,6 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     protected override void OnExitCustomActions()
     {
-        _rvoController.locked = false;
-
         _aiHelper.CurrentLoadBehaviour.OnCapacityEmpty -= OnCapacityEmpty;
         _aiHelper.CurrentUnloadBehaviour.Deactivate();
         _aiHelper.CurrentLoadBehaviour.Deactivate();
@@ -107,8 +103,6 @@ public class AIHelperDeliverState : State<EState, ETransition>
 
     private void OnPathCompleted()
     {
-        _rvoController.locked = true;
-
         _aiHelper.CurrentLoadBehaviour.Activate();
 
         Vector3 rotTarget = _currentConsumer.AiInteraction.RotationTarget.position;
