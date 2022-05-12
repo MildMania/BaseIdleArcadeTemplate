@@ -110,8 +110,6 @@ public class AIMovementBehaviour : MonoBehaviour
             if (_aIPath.velocity.magnitude < _minVelocity)
             {
                 _currentStopDuration += Time.deltaTime;
-
-                Debug.Log(_totalPathDuration);
             }
             else
             {

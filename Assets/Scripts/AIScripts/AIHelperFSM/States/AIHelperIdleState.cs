@@ -30,7 +30,7 @@ public class AIHelperIdleState : State<EState, ETransition>
     {
         CoroutineRunner.Instance.WaitForSeconds(_delay, () =>
         {
-            FSM.SetTransition(ETransition.Store);
+            FSM.SetTransition(ETransition.Load);
         });
     }
 }

@@ -1,11 +1,16 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using Random = UnityEngine.Random;
 
 public class AIHelper : SerializedMonoBehaviour
 {
-    [OdinSerialize] private BaseResource _baseResource;
-    public BaseResource BaseResource => _baseResource;
+    [OdinSerialize] private List<BaseResource> _resources;
+
+    private BaseResource _resource;
+    public BaseResource Resource => _resource;
 
     [OdinSerialize] private Dictionary<BaseResource, BaseLoadBehaviour> _resourceToLoadBehaviour;
     [OdinSerialize] private Dictionary<BaseResource, BaseUnloadBehaviour> _resourceToUnloadBehaviour;
@@ -19,60 +24,71 @@ public class AIHelper : SerializedMonoBehaviour
 
     private void Start()
     {
+        InitAiHelper();
+    }
+
+
+    private void InitAiHelper()
+    {
         foreach (var item in _resourceToLoadBehaviour)
         {
-            if (item.Key.GetType() != _baseResource.GetType())
-            {
-                item.Value.StopLoading();
-            }
-            else
+            if (item.Key.Equals(_resource))
             {
                 _currentLoadBehaviour = item.Value;
-                _currentLoadBehaviour.Deactivate();
+            }
+
+            item.Value.Deactivate();
+        }
+
+        foreach (var item in _resourceToUnloadBehaviour)
+        {
+            if (item.Key.Equals(_resource))
+            {
+                _currentUnloadBehaviour = item.Value;
+            }
+
+            item.Value.Deactivate();
+        }
+    }
+
+    public void PickRandomLoadUnloadBehaviour(Action onRandomLoadUnloadSelected)
+    {
+        StartCoroutine(PickRandomLoadUnloadRoutine(onRandomLoadUnloadSelected));
+    }
+
+    private IEnumerator PickRandomLoadUnloadRoutine(Action onRandomLoadUnloadSelected)
+    {
+        do
+        {
+            int randomResourceIndex = Random.Range(0, _resources.Count);
+            _resource = _resources[randomResourceIndex];
+
+            yield return null;
+        } while (ProducerProvider.Instance.GetProducers(_resource.GetType()) == null ||
+                 ProducerProvider.Instance.GetProducers(_resource.GetType()).Count < 1 ||
+                 ConsumerProvider.Instance.GetConsumers(_resource.GetType()) == null ||
+                 ConsumerProvider.Instance.GetConsumers(_resource.GetType()).Count < 1);
+
+        InitAiHelper();
+        onRandomLoadUnloadSelected?.Invoke();
+    }
+
+    public void UpdateLoadUnloadBehaviours()
+    {
+        foreach (var item in _resourceToLoadBehaviour)
+        {
+            if (item.Key.Equals(_resource))
+            {
+                _currentLoadBehaviour = item.Value;
             }
         }
 
         foreach (var item in _resourceToUnloadBehaviour)
         {
-            if (item.Key.GetType() != _baseResource.GetType())
-            {
-                item.Value.StopUnloading();
-            }
-            else
+            if (item.Key.Equals(_resource))
             {
                 _currentUnloadBehaviour = item.Value;
-                _currentUnloadBehaviour.Deactivate();
             }
         }
-    }
-
-    public List<BaseConsumer> GetConsumers()
-    {
-        return ConsumerProvider.Instance.GetConsumers(_baseResource.GetType());
-    }
-
-    public List<BaseProducer> GetProducers()
-    {
-        return ProducerProvider.Instance.GetProducers(_baseResource.GetType());
-    }
-
-    public void ReserveProducer(BaseProducer producer)
-    {
-        ProducerProvider.Instance.ReserveProducer(_baseResource.GetType(), producer);
-    }
-
-    public void ReleaseProducer(BaseProducer producer)
-    {
-        ProducerProvider.Instance.ReleaseProducer(_baseResource.GetType(), producer);
-    }
-
-    public void ReserveConsumer(BaseConsumer consumer)
-    {
-        ConsumerProvider.Instance.ReserveConsumer(_baseResource.GetType(), consumer); 
-    }
-
-    public void ReleaseConsumer(BaseConsumer consumer)
-    {
-        ConsumerProvider.Instance.ReleaseConsumer(_baseResource.GetType(), consumer);
     }
 }

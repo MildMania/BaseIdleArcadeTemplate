@@ -17,10 +17,10 @@ public class AIHelperFSM : MMFSM<EState, ETransition>
     {
         return new Dictionary<ST, EState>
         {
-            { new ST(EState.Idle, ETransition.Store), EState.Store},
-            { new ST(EState.Idle, ETransition.Deliver), EState.Deliver},
-            { new ST(EState.Store, ETransition.Deliver), EState.Deliver},
-            { new ST(EState.Deliver, ETransition.Store), EState.Store},
+            { new ST(EState.Idle, ETransition.Load), EState.Load},
+            { new ST(EState.Idle, ETransition.Unload), EState.Unload},
+            { new ST(EState.Load, ETransition.Unload), EState.Unload},
+            { new ST(EState.Unload, ETransition.Load), EState.Load},
         };
     }
 }

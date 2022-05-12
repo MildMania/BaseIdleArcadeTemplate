@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 7200621567302033797}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3385223967665487742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7177956067808710110}
+  m_Layer: 0
+  m_Name: RotationTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7177956067808710110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3385223967665487742}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7200621567339097140}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5864096901231532942
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +244,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceContainer: {fileID: 5441731594550042117}
+  _canLoadUnlimited: 0
+  _loadLimit: 25
 --- !u!1 &7200621566646041163
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +352,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceContainer: {fileID: 782435212564753722}
+  _canLoadUnlimited: 0
+  _loadLimit: 25
 --- !u!1 &7200621567339097141
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +384,7 @@ Transform:
   - {fileID: 7200621567328538182}
   - {fileID: 7711958558235124341}
   - {fileID: 7200621566455072509}
+  - {fileID: 7177956067808710110}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -577,6 +612,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _consumer: {fileID: 7200621567833872713}
   _resourceProvider: {fileID: 7200621566613189951}
+  _onConsumptionStartedTasks:
+    _taskCarrier: {fileID: 0}
+  _onConsumptionStoppedTasks:
+    _taskCarrier: {fileID: 0}
 --- !u!65 &7200621567833872712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -602,7 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024e992180972d44da5d1975384e069b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionPoint: {fileID: 3553723653269701831}
+  _rotationTarget: {fileID: 7177956067808710110}
+  _collider: {fileID: 7200621567833872712}
 --- !u!1 &7200621567856299144
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +881,7 @@ GameObject:
   - component: {fileID: 7200621568404098149}
   - component: {fileID: 7200621568404098150}
   - component: {fileID: 7200621567328538183}
+  - component: {fileID: 5899788329253860327}
   m_Layer: 10
   m_Name: Paper
   m_TagString: Untagged
@@ -937,6 +978,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4636a139e74cd49567c91b6a2c6ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5899788329253860327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200621568404098152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aada09b0e6f5cc74b951f82c3760fdd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDebugEnabled: 0
+  _pushOnDisable: 1
+  _setActiveFalseOnPush: 1
+  _poppedTaskExecutor:
+    _taskCarrier: {fileID: 0}
+  _pushedTaskExecutor:
+    _taskCarrier: {fileID: 0}
 --- !u!1 &9135891995567644560
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,6 +1042,14 @@ PrefabInstance:
       propertyPath: _resourceProviders.Array.data[0]
       value: 
       objectReference: {fileID: 7200621567302033796}
+    - target: {fileID: 2348122272726328631, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
+      propertyPath: _collider
+      value: 
+      objectReference: {fileID: 2083754568312923027}
+    - target: {fileID: 2348122272726328631, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
+      propertyPath: _rotationTarget
+      value: 
+      objectReference: {fileID: 7177956067808710110}
     - target: {fileID: 2596791438187707643, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
       propertyPath: _paperProvider
       value: 
@@ -1144,6 +1212,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
+--- !u!65 &2083754568312923027 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6561441855916908140, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
+  m_PrefabInstance: {fileID: 5180290930995707391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7711958558235124341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3234277590739869578, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}

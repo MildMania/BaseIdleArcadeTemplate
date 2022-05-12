@@ -75,6 +75,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceContainer: {fileID: 8969727244299623016}
+  _canLoadUnlimited: 0
+  _loadLimit: 25
 --- !u!1 &5556875149758241489
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceContainer: {fileID: 4436094534656619796}
+  _canLoadUnlimited: 1
+  _loadLimit: 0
 --- !u!1 &5556875149777713141
 GameObject:
   m_ObjectHideFlags: 0

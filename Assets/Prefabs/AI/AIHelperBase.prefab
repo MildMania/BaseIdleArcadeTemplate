@@ -253,8 +253,10 @@ MonoBehaviour:
   _attributeCategory: 2
   _unloadSpeedUpgradableType: 6
   _isActiveOnStart: 0
-  _hapticType: 2
   _unloadRequirementsTransform: {fileID: 0}
+  _onUnloadedTasks:
+    _taskCarrier: {fileID: 0}
+  _hapticType: 2
   _folderConsumerFovController: {fileID: 5790364403680320723}
 --- !u!114 &1286604798718278388
 MonoBehaviour:
@@ -653,7 +655,6 @@ MonoBehaviour:
     _taskCarrier: {fileID: 1799350510462183551}
   _helperAnimationController: {fileID: 6386894955537829496}
   _pollDelay: 5
-  _animationController: {fileID: 6386894955537829496}
 --- !u!1 &3734376035419674945
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,9 +817,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 850410296380798066}
     - {fileID: 8260683181702029858}
     - {fileID: 3325660377796771891}
-    - {fileID: 850410296380798066}
     - {fileID: 1286604798718278388}
     - {fileID: 6734664406479944683}
     - {fileID: 1591431150609968200}
@@ -827,16 +828,28 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: _baseResource
-      Entry: 6
+    - Name: _resources
+      Entry: 7
+      Data: 0|Antlr4.Runtime.Misc.ArrayList`1[[BaseResource, Assembly-CSharp]], Antlr4.Runtime.Standard
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
       Data: 
     - Name: _resourceToLoadBehaviour
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[BaseResource, Assembly-CSharp],[BaseLoadBehaviour,
+      Data: 1|System.Collections.Generic.Dictionary`2[[BaseResource, Assembly-CSharp],[BaseLoadBehaviour,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[BaseResource,
+      Data: 2|System.Collections.Generic.ObjectEqualityComparer`1[[BaseResource,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 8
@@ -849,10 +862,10 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: $v
       Entry: 10
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -861,7 +874,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 2
+      Data: 0
     - Name: $v
       Entry: 10
       Data: 3
@@ -876,11 +889,11 @@ MonoBehaviour:
       Data: 
     - Name: _resourceToUnloadBehaviour
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[BaseResource, Assembly-CSharp],[BaseUnloadBehaviour,
+      Data: 3|System.Collections.Generic.Dictionary`2[[BaseResource, Assembly-CSharp],[BaseUnloadBehaviour,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 9
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 12
       Data: 2
@@ -889,7 +902,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: $v
       Entry: 10
       Data: 4
@@ -901,7 +914,7 @@ MonoBehaviour:
       Data: 
     - Name: $k
       Entry: 10
-      Data: 2
+      Data: 0
     - Name: $v
       Entry: 10
       Data: 5
@@ -1438,7 +1451,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _exitImmediately: 1
-  _rvoController: {fileID: 7641330847075714885}
   _aiHelper: {fileID: 4706862737783256158}
   _movementBehaviour: {fileID: 5598689665677062176}
   _helperAnimationController: {fileID: 6386894955537829496}
@@ -1723,8 +1735,10 @@ MonoBehaviour:
   _attributeCategory: 2
   _unloadSpeedUpgradableType: 6
   _isActiveOnStart: 0
-  _hapticType: 2
   _unloadRequirementsTransform: {fileID: 0}
+  _onUnloadedTasks:
+    _taskCarrier: {fileID: 0}
+  _hapticType: 2
   _paperConsumerFovController: {fileID: 2100999408035901779}
 --- !u!1 &9025901034665327267
 GameObject:

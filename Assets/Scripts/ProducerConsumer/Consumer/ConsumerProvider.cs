@@ -39,12 +39,42 @@ public class ConsumerProvider : Singleton<ConsumerProvider>
         }
     }
 
+    public void RemoveConsumer(BaseConsumer consumer, System.Type resourceType)
+    {
+        _consumersByResource[resourceType].Remove(consumer);
+    }
+
     public List<BaseConsumer> GetConsumers(System.Type resourceType)
     {
         List<BaseConsumer> list;
         _consumersByResource.TryGetValue(resourceType, out list);
 
         return list;
+    }
+
+    public List<BaseConsumer> GetAvailableConsumers(System.Type resourceType)
+    {
+        List<BaseConsumer> consumers;
+        List<BaseConsumer> availableConsumers = new List<BaseConsumer>();
+
+        _consumersByResource.TryGetValue(resourceType, out consumers);
+        foreach (BaseConsumer consumer in consumers)
+        {
+            availableConsumers.Add(consumer);
+        }
+
+        if (availableConsumers != null)
+        {
+            for (int i = availableConsumers.Count - 1; i >= 0; i--)
+            {
+                if (availableConsumers[i].IsFull())
+                {
+                    availableConsumers.RemoveAt(i);
+                }
+            }
+        }
+        
+        return availableConsumers;
     }
 
     public void ReserveConsumer(System.Type type, BaseConsumer consumer)

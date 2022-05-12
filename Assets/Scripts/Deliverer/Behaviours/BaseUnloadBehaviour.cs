@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MMFramework_2._0.PhaseSystem.Core.EventListener;
+using MMFramework.TasksV2;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,17 +12,21 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
     [SerializeField] protected EAttributeCategory _attributeCategory;
     [SerializeField] protected EUpgradable _unloadSpeedUpgradableType;
     [SerializeField] protected bool _isActiveOnStart = true;
+    [SerializeField] protected Transform _unloadRequirementsTransform;
+    [SerializeField] protected MMTaskExecutor _onUnloadedTasks = null;
 
     [SerializeField]
     protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
-
-    [SerializeField] protected Transform _unloadRequirementsTransform;
 
     protected Upgradable _unloadSpeedUpgradable;
     protected OnHapticRequestedEventRaiser _onHapticRequestedEventRaiser = new OnHapticRequestedEventRaiser();
     protected float _unloadDelay;
     protected bool _isActive = true;
     protected BaseRequirement[] _unloadRequirements;
+
+
+    public Action OnCapacityEmpty;
+    public Action OnConsumerCapacityFull;
 
     public void StopUnloading()
     {
@@ -135,13 +139,31 @@ public abstract class BaseUnloadBehaviour<TBaseConsumer, TResource> : BaseUnload
 
             if (_isActive && currentTime > _unloadDelay)
             {
-                if (_consumers.Count > 0 && CanUnload())
+                if (_consumers.Count > 0)
                 {
                     int index = (int) Random.Range(0, _consumers.Count - 0.1f);
-                    if (_deliverer.Resources.Count > 0)
+                    if (!_consumers[index].GetComponent<ConsumptionController<TBaseConsumer, TResource>>()
+                            .IsCapacityFull())
                     {
-                        UnloadCustomActions(index);
-                        _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
+                        if (_deliverer.Resources.Count > 0)
+                        {
+                            int lastResourceIndex = _deliverer.GetLastResourceIndex<TResource>();
+
+                            if (lastResourceIndex > -1)
+                            {
+                                UnloadCustomActions(index);
+                                _deliverer.OnContainerEmpty?.Invoke(_deliverer.Container.childCount == 0);
+                                _onUnloadedTasks?.Execute(this);
+                            }
+                        }
+                        else
+                        {
+                            OnCapacityEmpty?.Invoke();
+                        }
+                    }
+                    else
+                    {
+                        OnConsumerCapacityFull?.Invoke();
                     }
                 }
 
