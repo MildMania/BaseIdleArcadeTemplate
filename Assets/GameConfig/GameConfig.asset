@@ -688,7 +688,7 @@ MonoBehaviour:
       Data: 16|AttributeInfo[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 9
+      Data: 4
     - Name: 
       Entry: 7
       Data: AttributeInfo, Assembly-CSharp
@@ -731,66 +731,6 @@ MonoBehaviour:
     - Name: Level
       Entry: 3
       Data: 3
-    - Name: Value
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: AttributeInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 4
-    - Name: Value
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: AttributeInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 5
-    - Name: Value
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: AttributeInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 6
-    - Name: Value
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: AttributeInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 7
-    - Name: Value
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: AttributeInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 8
     - Name: Value
       Entry: 4
       Data: 1
@@ -1586,7 +1526,7 @@ MonoBehaviour:
       Data: 40|RequirementInfo[], Assembly-CSharp
     - Name: 
       Entry: 12
-      Data: 8
+      Data: 3
     - Name: 
       Entry: 7
       Data: RequirementInfo, Assembly-CSharp
@@ -1620,66 +1560,6 @@ MonoBehaviour:
     - Name: Value
       Entry: 3
       Data: 900
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: RequirementInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 4
-    - Name: Value
-      Entry: 3
-      Data: 1100
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: RequirementInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 5
-    - Name: Value
-      Entry: 3
-      Data: 1300
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: RequirementInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 6
-    - Name: Value
-      Entry: 3
-      Data: 1500
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: RequirementInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 7
-    - Name: Value
-      Entry: 3
-      Data: 1700
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: RequirementInfo, Assembly-CSharp
-    - Name: Level
-      Entry: 3
-      Data: 8
-    - Name: Value
-      Entry: 3
-      Data: 1900
     - Name: 
       Entry: 8
       Data: 
