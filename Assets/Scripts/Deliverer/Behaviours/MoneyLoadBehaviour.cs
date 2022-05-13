@@ -4,11 +4,11 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
 {
     [SerializeField] private CoinWorthCollector _coinWorthCollector;
     [SerializeField] private MoneyProducerFovController _moneyProducerFovController;
-    
+
     protected override void OnAwakeCustomActions()
     {
         base.OnAwakeCustomActions();
-        
+
         _moneyProducerFovController.OnTargetEnteredFieldOfView += OnProducerEnteredFieldOfView;
         _moneyProducerFovController.OnTargetExitedFieldOfView += OnProducerExitedFieldOfView;
         _isUpgradableActive = false;
@@ -18,22 +18,22 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
     protected override void OnDestroyCustomActions()
     {
         base.OnDestroyCustomActions();
-        
+
         _moneyProducerFovController.OnTargetEnteredFieldOfView -= OnProducerEnteredFieldOfView;
         _moneyProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
     }
 
-    public override void LoadCustomActions(Money resource)
+    public override void LoadCustomActions(Money money)
     {
-        resource.OnMoveRoutineFinished += OnMoveRoutineFinished;
-        resource.Move(_deliverer.transform, null);
+        money.LoadMovementBehaviour.OnMoveRoutineFinished += OnMoveRoutineFinished;
+        money.LoadMovementBehaviour.Move(_deliverer.transform, null);
     }
 
-    private void OnMoveRoutineFinished(BaseResource baseResource)
+    private void OnMoveRoutineFinished(BaseResource resource)
     {
-        Money money = (Money) baseResource;
+        Money money = (Money) resource;
         money.gameObject.SetActive(false);
-        money.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        money.LoadMovementBehaviour.OnMoveRoutineFinished -= OnMoveRoutineFinished;
         var worthDefiner = money.GetComponent<CoinWorthDefiner>();
         _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.Coin, worthDefiner.Count));
     }

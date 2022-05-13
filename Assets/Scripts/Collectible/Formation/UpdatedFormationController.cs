@@ -64,7 +64,7 @@ public class UpdatedFormationController : MonoBehaviour
     public Transform GetLastTargetTransform(Transform objectTransform)
     {
         //TODO: Update here to work with object pooling
-        
+
         Transform clonedTransform = Instantiate(objectTransform, transform);
         clonedTransform.gameObject.SetActive(false);
         CurrentRow = _addedTransformCount / TargetTransforms.Length;
@@ -89,7 +89,7 @@ public class UpdatedFormationController : MonoBehaviour
         TargetTransforms[CurrentColumn].Remove(targetTransform);
 
         targetTransform.SetParent(null);
-        
+
         Destroy(targetTransform.gameObject);
     }
 
@@ -112,12 +112,10 @@ public class UpdatedFormationController : MonoBehaviour
 
     public void UpdateResourcesPosition(Transform container)
     {
-        var resources = container.GetComponentsInChildren<Transform>();
-        int i = 0;
-        foreach (var resource in resources)
+        for (int i = 0; i < container.childCount; i++)
         {
-            resource.position = TargetTransforms[0][i].position;
-            i++;
+            Transform transform = container.GetChild(i);
+            transform.position = TargetTransforms[0][i].position;
         }
     }
 

@@ -23,15 +23,18 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
         _paperProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
     }
 
-    public override void LoadCustomActions(Paper resource)
+    public override void LoadCustomActions(Paper paper)
     {
         if (!_isFirstLoad)
         {
             _isFirstLoad = true;
             OnFistLoaded?.Invoke();
         }
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
-        resource.Move(targetTransform, _deliverer.Container);
-        _deliverer.Resources.Add(resource);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(paper.transform);
+
+
+        paper.LoadMovementBehaviour.Move(targetTransform, _deliverer.Container);
+        
+        _deliverer.Resources.Add(paper);
     }
 }

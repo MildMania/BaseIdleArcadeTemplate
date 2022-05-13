@@ -20,7 +20,15 @@ public abstract class BaseResource : MonoBehaviour
         }
     }
 
-    public Action<BaseResource> OnMoveRoutineFinished { get; set; }
+    public ResourceProduceMovementBehaviour ProduceMovementBehaviour =>
+        GetComponentInChildren<ResourceProduceMovementBehaviour>();
 
-    public abstract void Move(Transform target, Transform container);
+    public ResourceConsumeMovementBehaviour ConsumeMovementBehaviour =>
+        GetComponentInChildren<ResourceConsumeMovementBehaviour>();
+
+    public ResourceLoadMovementBehaviour LoadMovementBehaviour =>
+        GetComponentInChildren<ResourceLoadMovementBehaviour>();
+
+    public ResourceUnloadMovementBehaviour UnloadMovementBehaviour =>
+        GetComponentInChildren<ResourceUnloadMovementBehaviour>();
 }

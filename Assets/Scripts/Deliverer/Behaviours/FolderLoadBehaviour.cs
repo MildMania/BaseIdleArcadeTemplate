@@ -20,10 +20,11 @@ public class FolderLoadBehaviour : BaseLoadBehaviour<FolderProducer, Folder>
         _folderProducerFovController.OnTargetExitedFieldOfView -= OnProducerExitedFieldOfView;
     }
 
-    public override void LoadCustomActions(Folder resource)
+    public override void LoadCustomActions(Folder folder)
     {
-        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(resource.transform);
-        resource.Move(targetTransform, _deliverer.Container);
-        _deliverer.Resources.Add(resource);
+        Transform targetTransform = _updatedFormationController.GetLastTargetTransform(folder.transform);
+        
+        folder.LoadMovementBehaviour.Move(targetTransform, _deliverer.Container);
+        _deliverer.Resources.Add(folder);
     }
 }

@@ -5,17 +5,18 @@ public class FolderConsumer : BaseConsumer<Folder>
     public override void ConsumeCustomActions(Folder folder)
     {
         Transform targetTransform = _updatedFormationController.GetFirstTargetTransform();
-        folder.Move(targetTransform, null);
-        folder.OnMoveRoutineFinished += OnMoveRoutineFinished;
-        Debug.Log("FOLDER CONSUMED");
+        folder.ConsumeMovementBehaviour.Move(targetTransform, null);
+        
+        folder.ConsumeMovementBehaviour.OnMoveRoutineFinished += OnMoveRoutineFinished;
+
     }
 
-    private void OnMoveRoutineFinished(BaseResource baseResource)
+    private void OnMoveRoutineFinished(BaseResource resource)
     {
-        Folder folder = (Folder) baseResource;
-        folder.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        Folder folder = (Folder) resource;
+        folder.ConsumeMovementBehaviour.OnMoveRoutineFinished -= OnMoveRoutineFinished;
         folder.GOPoolObject.Push();
-        // folder.gameObject.SetActive(false);
+    
         OnConsumeFinished?.Invoke(this, folder);
     }
 }

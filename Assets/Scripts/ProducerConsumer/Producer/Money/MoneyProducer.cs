@@ -12,9 +12,8 @@ public class MoneyProducer : BaseProducer<Money>
         var moneyTransform = money.transform;
         clonedMoney.transform.SetPositionAndRotation(moneyTransform.position, moneyTransform.rotation);
         clonedMoney.gameObject.SetActive(true);
-        // Folder clonedFolder = Instantiate(folder, folder.transform.position, folder.transform.rotation);
-
-        clonedMoney.Move(targetTransform, _resourceProvider.ResourceContainer);
+   
+        clonedMoney.ProduceMovementBehaviour.Move(targetTransform, _resourceProvider.ResourceContainer);
         return clonedMoney;
     }
 

@@ -53,14 +53,18 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
         UpdatedFormationController consumerFormationController =
             paperConsumer.GetComponentInChildren<UpdatedFormationController>();
         Transform targetTransform = consumerFormationController.GetLastTargetTransform(paper.transform);
-        paper.OnMoveRoutineFinished += OnMoveRoutineFinished;
-        paper.Move(targetTransform, paperConsumer.ResourceProvider.ResourceContainer);
+
+        paper.UnloadMovementBehaviour.OnMoveRoutineFinished += OnMoveRoutineFinished;
+        paper.UnloadMovementBehaviour.Move(targetTransform, paperConsumer.ResourceProvider.ResourceContainer);
+        
+
         paperConsumer.ResourceProvider.Resources.Add(paper);
     }
 
     private void OnMoveRoutineFinished(BaseResource paper)
     {
-        paper.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        paper.UnloadMovementBehaviour.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        
         _updatedFormationController.UpdateResourcesPosition(_deliverer.Container);
     }
 }
