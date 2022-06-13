@@ -13,24 +13,24 @@ public class UnwalkableUnlockableObject : UnlockableObject
 
         if (_unlockableTrackData.IsUnlock)
         {
-            UnlockDoors();
+            SetWalkable();
         }
         else
         {
-            LockDoors();
+            SetUnwalkable();
         }
         
-        ScanAreaForDoors();
+        ScanArea();
         
     }
 
-    private void ScanAreaForDoors()
+    private void ScanArea()
     {
         var graphToScan = AstarPath.active.data.gridGraph;
         AstarPath.active.Scan(graphToScan);
     }
 
-    private void LockDoors()
+    private void SetUnwalkable()
     {
         foreach (var doorObject in _colliderObjects)
         {
@@ -40,7 +40,7 @@ public class UnwalkableUnlockableObject : UnlockableObject
         }
     }
     
-    private void UnlockDoors()
+    private void SetWalkable()
     {
         foreach (var doorObject in _colliderObjects)
         {
@@ -54,7 +54,7 @@ public class UnwalkableUnlockableObject : UnlockableObject
     protected override void OnDetectedCustomActions()
     {
         base.OnDetectedCustomActions();
-        UnlockDoors();
-        ScanAreaForDoors();
+        SetWalkable();
+        ScanArea();
     }
 }
