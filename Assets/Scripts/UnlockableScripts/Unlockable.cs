@@ -34,8 +34,6 @@ public class Unlockable
 	public bool TryUnlock(User user,int amount)
 	{
 		var userCoinInventoryData = user.GetUserData<UserCoinInventoryData>();
-
-		var userUnlockableData = user.GetUserData<UserUnlockableData>();
 		
 		Coin trackableCoin;
 		userCoinInventoryData.Tracker.TryGetSingle(ECoin.Gold, out trackableCoin);
@@ -49,16 +47,14 @@ public class Unlockable
 			totalRequiredAmount += requirementCoin.RequirementData.RequiredAmount;
 		}
 
+		int maxRequiredAmount = totalRequiredAmount;
 		totalRequiredAmount -= _unlockableTrackData.CurrentCount;
-
+		
 		if (trackableCoin.TrackData.CurrentCount == 0)
 		{
 			if (totalRequiredAmount == 0)
 			{
-				UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
-					_unlockableTrackData.CurrentCount,
-					true);
-				userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
+				user.UnlockableUpdater.UpdateUnlockable(_unlockableTrackData.TrackID,_unlockableTrackData.CurrentCount,true);
 				return true;
 			}
 			return false;
@@ -66,11 +62,24 @@ public class Unlockable
 		
 		if (totalRequiredAmount != 0 )
 		{
-			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
-				_unlockableTrackData.CurrentCount + amount,false);
-			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
+			CoinTrackData coinTrackData;
+			if (amount >= totalRequiredAmount)
+			{
+				user.UnlockableUpdater.UpdateUnlockable(_unlockableTrackData.TrackID,maxRequiredAmount,true);
+				coinTrackData =
+					new CoinTrackData(
+						ECoin.Gold,
+						count: trackableCoin.TrackData.CurrentCount - totalRequiredAmount);
+		
+				trackableCoin.UpdateData(coinTrackData);
+				OnLockedValueChanged?.Invoke();
+				
+				return true;
+			}
 			
-			CoinTrackData coinTrackData =
+			user.UnlockableUpdater.UpdateUnlockable(_unlockableTrackData.TrackID,_unlockableTrackData.CurrentCount + amount,false);
+
+			coinTrackData =
 				new CoinTrackData(
 					ECoin.Gold,
 					count: trackableCoin.TrackData.CurrentCount - amount);
@@ -80,15 +89,9 @@ public class Unlockable
 			
 			return false;
 		}
-		else
-		{
-			UnlockableTrackData unlockableTrackData = new UnlockableTrackData(_unlockableTrackData.TrackID, 
-				_unlockableTrackData.CurrentCount,
-				true);
-			userUnlockableData.Tracker.TryUpsert(unlockableTrackData);
-			
-			return true;
-		}
+		
+		user.UnlockableUpdater.UpdateUnlockable(_unlockableTrackData.TrackID,maxRequiredAmount,true);
+		return true;
 	}
 	
 	public int GetRequirementCoin()

@@ -807,9 +807,39 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1802277204}
     - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+      propertyPath: _decreaseAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+    - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+      propertyPath: _unlockableGOList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+      propertyPath: _unlockableGOList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1802277204}
+    - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"Unlockable.Requirements.[0].RequirementData","value":{"$id":0,"$type":"RequirementDataCoin,
+        Assembly-CSharp","_coinType":1,"_requiredAmount":2}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"Unlockable.Requirements.[0].RequirementData._requiredAmount","value":{"$id":0,"$type":"System.Int32,
+        mscorlib",203}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6968486724384274556, guid: 9d3476001dd800b44834693003984b9f, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6968486724384274557, guid: 9d3476001dd800b44834693003984b9f, type: 3}
       propertyPath: m_RootOrder
       value: 1

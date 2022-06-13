@@ -18,6 +18,8 @@ public class User
 
     public InventoryController<EInventory> InventoryController { get; private set; }
 
+    public UnlockableUpdater UnlockableUpdater { get; private set; }
+
     private Action _onDataLoaded;
     
     public User(
@@ -30,6 +32,8 @@ public class User
         IsLocalUser = isLocalUser;
         
         InventoryController = inventoryController;
+
+        UnlockableUpdater = unlockableUpdater;
 
         InitUserDataMap(userDataParams);
     }

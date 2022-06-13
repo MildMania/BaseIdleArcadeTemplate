@@ -15,7 +15,7 @@ public class UnlockableUpdater
 	public void UpdateUnlockable(Guid unlockableID, int currentCount , bool isUnlock)
 	{
 		_unlockableDataProvider.SetUnlockable(unlockableID, 
-			_unlockableDataProvider.GetUnlockable(unlockableID) + currentCount,isUnlock);
+			currentCount,isUnlock);
 
 		OnUnlockableUpdated?.Invoke(unlockableID, _unlockableDataProvider.GetUnlockable(unlockableID));
 	}

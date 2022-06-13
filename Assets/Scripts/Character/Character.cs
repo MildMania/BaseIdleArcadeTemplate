@@ -11,6 +11,13 @@ public class Character : MonoBehaviour
     public bool IsCollided { get; private set; }
     public Action<Character> OnCollided;
 
+    public Rigidbody CharacterRb { get; private set; }
+    
+    void Awake()
+    {
+        CharacterRb = gameObject.GetComponent<Rigidbody>();
+    }
+    
     public bool TryCollide()
     {
 
