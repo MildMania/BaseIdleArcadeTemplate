@@ -58,7 +58,7 @@ public class PaperUnloadBehaviour : BaseUnloadBehaviour<PaperConsumer, Paper>
         paper.UnloadMovementBehaviour.Move(targetTransform, paperConsumer.ResourceProvider.ResourceContainer);
         
 
-        paperConsumer.ResourceProvider.Resources.Add(paper);
+        paperConsumer.AddToResourceProvider(paper);
     }
 
     private void OnMoveRoutineFinished(BaseResource paper)

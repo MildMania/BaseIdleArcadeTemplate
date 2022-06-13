@@ -49,7 +49,7 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		folder.UnloadMovementBehaviour.OnMoveRoutineFinished += OnMoveRoutineFinished;
 		folder.UnloadMovementBehaviour.Move(targetTransform, folderConsumer.ResourceProvider.ResourceContainer);
 		
-		folderConsumer.ResourceProvider.Resources.Add(folder);
+		folderConsumer.AddToResourceProvider(folder);
 	}
 
 	private void OnMoveRoutineFinished(BaseResource resource)

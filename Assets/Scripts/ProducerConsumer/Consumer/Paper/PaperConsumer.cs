@@ -15,11 +15,11 @@ public class PaperConsumer : BaseConsumer<Paper>
     private void OnMoveRoutineFinished(BaseResource baseResource)
     {
         Paper paper = (Paper) baseResource;
-
         paper.ConsumeMovementBehaviour.OnMoveRoutineFinished -= OnMoveRoutineFinished;
-
+        _onMoveFinishedTaskExecutor?.Execute(this);
         paper.GOPoolObject.Push();
 
         OnConsumeFinished?.Invoke(this, paper);
+        OnConsumed?.Invoke();
     }
 }

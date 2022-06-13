@@ -15,8 +15,10 @@ public class FolderConsumer : BaseConsumer<Folder>
     {
         Folder folder = (Folder) resource;
         folder.ConsumeMovementBehaviour.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        _onMoveFinishedTaskExecutor?.Execute(this);
         folder.GOPoolObject.Push();
     
         OnConsumeFinished?.Invoke(this, folder);
+        OnConsumed?.Invoke();
     }
 }
