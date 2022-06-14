@@ -49,8 +49,10 @@ MonoBehaviour:
   _attributeCategory: 1
   _unloadSpeedUpgradableType: 3
   _isActiveOnStart: 1
-  _hapticType: 2
   _unloadRequirementsTransform: {fileID: 6172928936088107552}
+  _onUnloadedTasks:
+    _taskCarrier: {fileID: 0}
+  _hapticType: 2
   _folderConsumerFovController: {fileID: 723085994427913071}
 --- !u!114 &4522485724356876269
 MonoBehaviour:
@@ -977,8 +979,10 @@ MonoBehaviour:
   _attributeCategory: 1
   _unloadSpeedUpgradableType: 3
   _isActiveOnStart: 1
-  _hapticType: 2
   _unloadRequirementsTransform: {fileID: 6172928936088107552}
+  _onUnloadedTasks:
+    _taskCarrier: {fileID: 0}
+  _hapticType: 2
   _paperConsumerFovController: {fileID: 1618141994417384173}
 --- !u!1 &3340411455920048298
 GameObject:
@@ -1524,9 +1528,57 @@ Transform:
   - {fileID: 9061126496990848039}
   - {fileID: 822075697559753397}
   - {fileID: 8050666982921056331}
+  - {fileID: 4655328828520081685}
   m_Father: {fileID: 9173010147610378951}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5464747473329750881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2703411050883682544}
+  - component: {fileID: 6708696681067664275}
+  m_Layer: 6
+  m_Name: SingleMoneyCollect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2703411050883682544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5464747473329750881}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1551606962455997115}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6708696681067664275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5464747473329750881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f728d15da62fb4986f50dd5358b27e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coinWorthCollector: {fileID: 2634399202852726416}
+  _moneyFovController: {fileID: 5913515803153568748}
+  _singleMoneyTweenBehaviour: {fileID: 0}
+  _hapticType: 2
 --- !u!1 &5711993118391570682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,6 +1893,7 @@ Transform:
   - {fileID: 2819550088042760240}
   - {fileID: 8530490776553617237}
   - {fileID: 6073793745632031233}
+  - {fileID: 2703411050883682544}
   m_Father: {fileID: 9173010147610378951}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1944,6 +1997,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa8062a448dd17943bfca0c2e7d58b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7622138231407594766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4655328828520081685}
+  - component: {fileID: 5913515803153568748}
+  - component: {fileID: 7103436840437976422}
+  - component: {fileID: 1298276400930345894}
+  m_Layer: 6
+  m_Name: FovBasedSingleMoneyDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4655328828520081685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622138231407594766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5727799970943179123}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5913515803153568748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622138231407594766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84457973b6d25574883c9ee76ab5350d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fovColl:
+  - {fileID: 7103436840437976422}
+  _isActiveOnAwake: 0
+  _updateInterval: 0
+--- !u!114 &7103436840437976422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622138231407594766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e72f0e161cf1f9468b020e33c099d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDebugEnabled: 0
+  _shapeType: 0
+  _fovRadius: 0.5
+  _fovHeight: 0
+  _fovAngle: 360
+  _targetMask:
+    serializedVersion: 2
+    m_Bits: 524288
+  _maxTargetCount: 10
+  _obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &1298276400930345894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7622138231407594766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998720047ffc15c4683ff8aab2c4ab5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _singleMoneyFOVController: {fileID: 5913515803153568748}
 --- !u!1 &7630370386654120869
 GameObject:
   m_ObjectHideFlags: 0
