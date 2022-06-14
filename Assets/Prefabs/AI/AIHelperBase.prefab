@@ -256,7 +256,7 @@ MonoBehaviour:
   _unloadRequirementsTransform: {fileID: 0}
   _onUnloadedTasks:
     _taskCarrier: {fileID: 0}
-  _hapticType: 2
+  _hapticType: 7
   _folderConsumerFovController: {fileID: 5790364403680320723}
 --- !u!114 &1286604798718278388
 MonoBehaviour:
@@ -294,7 +294,7 @@ MonoBehaviour:
   _container: {fileID: 4274420019230216113}
   _isActiveOnStart: 0
   _loadRequirementsTransform: {fileID: 0}
-  _hapticType: 2
+  _hapticType: 7
   _folderProducerFovController: {fileID: 3419851049315108552}
 --- !u!1 &1497660256541341506
 GameObject:
@@ -1699,7 +1699,7 @@ MonoBehaviour:
   _container: {fileID: 4274420019230216113}
   _isActiveOnStart: 0
   _loadRequirementsTransform: {fileID: 0}
-  _hapticType: 2
+  _hapticType: 7
   _paperProducerFovController: {fileID: 4918007575379483990}
 --- !u!114 &6734664406479944683
 MonoBehaviour:
@@ -1721,7 +1721,7 @@ MonoBehaviour:
   _unloadRequirementsTransform: {fileID: 0}
   _onUnloadedTasks:
     _taskCarrier: {fileID: 0}
-  _hapticType: 2
+  _hapticType: 7
   _paperConsumerFovController: {fileID: 2100999408035901779}
 --- !u!1 &9025901034665327267
 GameObject:
