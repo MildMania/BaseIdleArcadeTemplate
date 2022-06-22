@@ -7,6 +7,8 @@ public abstract class BaseConsumer : MonoBehaviour
     [SerializeField] protected MMTaskExecutor _onMoveFinishedTaskExecutor;
     [SerializeField] protected UpdatedFormationController _updatedFormationController;
     [SerializeField] protected AIInteraction _aiInteraction;
+    [SerializeField] protected BaseResourceMovementBehaviour _baseResourceMovementBehaviour;
+
     public AIInteraction AiInteraction => _aiInteraction;
     public Action<int> OnResourcesRemoved { get; set; }
     public Action<int> OnResourcesAdded { get; set; }

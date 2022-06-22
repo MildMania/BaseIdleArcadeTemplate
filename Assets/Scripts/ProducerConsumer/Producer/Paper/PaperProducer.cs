@@ -3,6 +3,7 @@ using UnityEngine;
 public class PaperProducer : BaseProducer<Paper>
 {
     [SerializeField] private UpdatedFormationController _updatedFormationController;
+    [SerializeField] private BaseResourceMovementBehaviour _baseResourceMovementBehaviour;
 
     public override Paper ProduceCustomActions(Paper paper)
     {
@@ -13,7 +14,7 @@ public class PaperProducer : BaseProducer<Paper>
         clonedPaper.transform.SetPositionAndRotation(paperTransform.position, paperTransform.rotation);
         clonedPaper.gameObject.SetActive(true);
 
-        clonedPaper.ProduceMovementBehaviour.Move(targetTransform, _resourceProvider.ResourceContainer);
+        clonedPaper.Move(targetTransform, _resourceProvider.ResourceContainer, Instantiate(_baseResourceMovementBehaviour));
 
         return clonedPaper;
     }

@@ -24,7 +24,7 @@ public class FolderLoadBehaviour : BaseLoadBehaviour<FolderProducer, Folder>
     {
         Transform targetTransform = _updatedFormationController.GetLastTargetTransform(folder.transform);
         
-        folder.LoadMovementBehaviour.Move(targetTransform, _deliverer.Container);
+        folder.Move(targetTransform, _deliverer.Container, Instantiate(_baseResourceMovementBehaviour));
         _deliverer.Resources.Add(folder);
     }
 }

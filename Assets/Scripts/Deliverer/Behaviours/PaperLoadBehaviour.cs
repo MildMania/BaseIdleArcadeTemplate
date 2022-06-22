@@ -33,7 +33,7 @@ public class PaperLoadBehaviour : BaseLoadBehaviour<PaperProducer, Paper>
         Transform targetTransform = _updatedFormationController.GetLastTargetTransform(paper.transform);
 
 
-        paper.LoadMovementBehaviour.Move(targetTransform, _deliverer.Container);
+        paper.Move(targetTransform, _deliverer.Container, Instantiate(_baseResourceMovementBehaviour));
         
         _deliverer.Resources.Add(paper);
     }

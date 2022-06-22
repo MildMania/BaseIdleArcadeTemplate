@@ -595,8 +595,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f011f026b444fb05f4ac9f0fc17ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onMoveFinishedTaskExecutor:
+    _taskCarrier: {fileID: 0}
   _updatedFormationController: {fileID: 7200621567421375389}
   _aiInteraction: {fileID: 2134797717107222006}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
   _baseResourceProvider: {fileID: 7200621566613189951}
 --- !u!114 &7200621567328538184
 MonoBehaviour:
@@ -978,6 +981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4636a139e74cd49567c91b6a2c6ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseResourceMovementBehaviour: {fileID: 0}
 --- !u!114 &5899788329253860327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,6 +1118,10 @@ PrefabInstance:
       propertyPath: _baseResourceProvider
       value: 
       objectReference: {fileID: 7200621567302033796}
+    - target: {fileID: 3234277590739869622, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
+      propertyPath: _baseResourceMovementBehaviour
+      value: 
+      objectReference: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
     - target: {fileID: 3234277591191653136, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
       propertyPath: m_Mesh
       value: 

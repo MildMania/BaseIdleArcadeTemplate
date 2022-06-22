@@ -52,6 +52,7 @@ MonoBehaviour:
   _unloadRequirementsTransform: {fileID: 6172928936088107552}
   _onUnloadedTasks:
     _taskCarrier: {fileID: 0}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
   _hapticType: 2
   _folderConsumerFovController: {fileID: 723085994427913071}
 --- !u!114 &4522485724356876269
@@ -90,6 +91,7 @@ MonoBehaviour:
   _container: {fileID: 1360490276735447177}
   _isActiveOnStart: 1
   _loadRequirementsTransform: {fileID: 6246231937164427722}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
   _hapticType: 2
   _folderProducerFovController: {fileID: 1043138689413498247}
 --- !u!1 &248085572542776962
@@ -960,6 +962,7 @@ MonoBehaviour:
   _container: {fileID: 1360490276735447177}
   _isActiveOnStart: 1
   _loadRequirementsTransform: {fileID: 6246231937164427722}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: 3009d090f8a913f498d64d4783e020f6, type: 2}
   _hapticType: 2
   _paperProducerFovController: {fileID: 3542385565636418112}
 --- !u!114 &8859736292155214051
@@ -982,6 +985,7 @@ MonoBehaviour:
   _unloadRequirementsTransform: {fileID: 6172928936088107552}
   _onUnloadedTasks:
     _taskCarrier: {fileID: 0}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: 3009d090f8a913f498d64d4783e020f6, type: 2}
   _hapticType: 2
   _paperConsumerFovController: {fileID: 1618141994417384173}
 --- !u!1 &3340411455920048298
@@ -2150,6 +2154,7 @@ MonoBehaviour:
   _container: {fileID: 1360490276735447177}
   _isActiveOnStart: 1
   _loadRequirementsTransform: {fileID: 6246231937164427722}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
   _hapticType: 2
   _coinWorthCollector: {fileID: 2634399202852726416}
   _moneyProducerFovController: {fileID: 7793651401536557702}

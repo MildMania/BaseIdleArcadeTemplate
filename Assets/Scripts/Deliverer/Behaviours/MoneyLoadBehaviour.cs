@@ -25,15 +25,15 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
 
     public override void LoadCustomActions(Money money)
     {
-        money.LoadMovementBehaviour.OnMoveRoutineFinished += OnMoveRoutineFinished;
-        money.LoadMovementBehaviour.Move(_deliverer.transform, null);
+        money.OnMovementFinished += OnMoveRoutineFinished;
+        money.Move(_deliverer.transform, null, Instantiate(_baseResourceMovementBehaviour));
     }
 
     private void OnMoveRoutineFinished(BaseResource resource)
     {
         Money money = (Money) resource;
         money.gameObject.SetActive(false);
-        money.LoadMovementBehaviour.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+        money.OnMovementFinished -= OnMoveRoutineFinished;
         var worthDefiner = money.GetComponent<CoinWorthDefiner>();
         _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.Coin, worthDefiner.Count));
     }

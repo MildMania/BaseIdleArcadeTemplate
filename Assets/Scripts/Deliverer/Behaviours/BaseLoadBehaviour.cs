@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MMFramework_2._0.PhaseSystem.Core.EventListener;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -17,7 +16,8 @@ public abstract class BaseLoadBehaviour : SerializedMonoBehaviour
     [SerializeField] protected Transform _container;
     [SerializeField] protected bool _isActiveOnStart = true;
     [SerializeField] protected Transform _loadRequirementsTransform;
-
+    [SerializeField] protected BaseResourceMovementBehaviour _baseResourceMovementBehaviour;
+    
     [SerializeField]
     protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;
 

@@ -6,10 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(GOPoolObject))]
 public abstract class BaseResource : MonoBehaviour
 {
+    [SerializeField] private BaseResourceMovementBehaviour _baseResourceMovementBehaviour;
     private GOPoolObject _goPoolObject;
 
-
-    public GOPoolObject GOPoolObject
+    public GOPoolObject GoPoolObject
     {
         get
         {
@@ -20,15 +20,19 @@ public abstract class BaseResource : MonoBehaviour
         }
     }
 
-    public ResourceProduceMovementBehaviour ProduceMovementBehaviour =>
-        GetComponentInChildren<ResourceProduceMovementBehaviour>();
+    public Action<BaseResource> OnMovementFinished { get; set; }
 
-    public ResourceConsumeMovementBehaviour ConsumeMovementBehaviour =>
-        GetComponentInChildren<ResourceConsumeMovementBehaviour>();
+    public virtual void Move(Transform target, Transform container,
+        BaseResourceMovementBehaviour baseResourceMovementBehaviour = default)
+    {
+        if (baseResourceMovementBehaviour != null)
+        {
+            _baseResourceMovementBehaviour = baseResourceMovementBehaviour;
+        }
 
-    public ResourceLoadMovementBehaviour LoadMovementBehaviour =>
-        GetComponentInChildren<ResourceLoadMovementBehaviour>();
-
-    public ResourceUnloadMovementBehaviour UnloadMovementBehaviour =>
-        GetComponentInChildren<ResourceUnloadMovementBehaviour>();
+        if (_baseResourceMovementBehaviour != null)
+        {
+            _baseResourceMovementBehaviour.Move(transform, target, container, (() => OnMovementFinished?.Invoke(this)));
+        }
+    }
 }

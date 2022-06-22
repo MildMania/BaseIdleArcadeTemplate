@@ -6,6 +6,6 @@ public class SingleMoney : BaseResource
 {
     public void DestroyItself()
     {
-        GOPoolObject.Push();
+        GoPoolObject.Push();
     }
 }

@@ -629,6 +629,7 @@ MonoBehaviour:
   _aiInteraction: {fileID: 0}
   _resourceProvider: {fileID: 0}
   _updatedFormationController: {fileID: 7678804735298749896}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
 --- !u!114 &7678804737101695222
 MonoBehaviour:
   m_ObjectHideFlags: 0

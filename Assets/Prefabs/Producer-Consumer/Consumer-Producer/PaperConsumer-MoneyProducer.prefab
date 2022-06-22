@@ -255,6 +255,10 @@ PrefabInstance:
       value: MoneyProducer
       objectReference: {fileID: 0}
     - target: {fileID: 7678804737101695223, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
+      propertyPath: _aiInteraction
+      value: 
+      objectReference: {fileID: 2858497200548147976}
+    - target: {fileID: 7678804737101695223, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
       propertyPath: _resourceProvider
       value: 
       objectReference: {fileID: 5556875149758241491}
@@ -262,6 +266,10 @@ PrefabInstance:
       propertyPath: _baseResourceProvider
       value: 
       objectReference: {fileID: 5556875149758241491}
+    - target: {fileID: 7678804737101695223, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
+      propertyPath: _baseResourceMovementBehaviour
+      value: 
+      objectReference: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
     - target: {fileID: 7678804737234371677, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
       propertyPath: _paperProvider
       value: 
@@ -433,6 +441,10 @@ PrefabInstance:
       propertyPath: _baseResourceProvider
       value: 
       objectReference: {fileID: 5556875148587522472}
+    - target: {fileID: 3334096973536705353, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
+      propertyPath: _baseResourceMovementBehaviour
+      value: 
+      objectReference: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
     - target: {fileID: 3334096973572205696, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -461,5 +473,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e5cac89dc684750ad8409fa98bf042d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2858497200548147976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4968463276446919764, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
+  m_PrefabInstance: {fileID: 7158730034649227100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024e992180972d44da5d1975384e069b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

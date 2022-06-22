@@ -14,6 +14,7 @@ public abstract class BaseUnloadBehaviour : MonoBehaviour
     [SerializeField] protected bool _isActiveOnStart = true;
     [SerializeField] protected Transform _unloadRequirementsTransform;
     [SerializeField] protected MMTaskExecutor _onUnloadedTasks = null;
+    [SerializeField] protected BaseResourceMovementBehaviour _baseResourceMovementBehaviour;
 
     [SerializeField]
     protected iOSHapticFeedback.iOSFeedbackType _hapticType = iOSHapticFeedback.iOSFeedbackType.ImpactMedium;

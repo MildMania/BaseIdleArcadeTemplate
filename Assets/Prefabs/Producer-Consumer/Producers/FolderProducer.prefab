@@ -207,6 +207,7 @@ MonoBehaviour:
   _aiInteraction: {fileID: 2348122272726328631}
   _resourceProvider: {fileID: 0}
   _updatedFormationController: {fileID: 8284780697747411043}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
 --- !u!114 &3234277590739869621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,8 +226,6 @@ MonoBehaviour:
   - {fileID: 2596791438187707643}
   - {fileID: 1064879641091298323}
   _productionDelay: 1
-  _maxIndicatorObject: {fileID: 0}
-  _capacityRequirement: {fileID: 1064879641091298323}
 --- !u!114 &2348122272726328631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024e992180972d44da5d1975384e069b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactionPoint: {fileID: 740543538124632216}
+  _rotationTarget: {fileID: 0}
+  _collider: {fileID: 0}
 --- !u!1 &3234277591191653148
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,15 +46,15 @@ public class FolderUnloadBehaviour : BaseUnloadBehaviour<FolderConsumer, Folder>
 		Transform targetTransform = consumerFormationController.GetLastTargetTransform(folder.transform);
 		
 		
-		folder.UnloadMovementBehaviour.OnMoveRoutineFinished += OnMoveRoutineFinished;
-		folder.UnloadMovementBehaviour.Move(targetTransform, folderConsumer.ResourceProvider.ResourceContainer);
+		folder.OnMovementFinished += OnMoveRoutineFinished;
+		folder.Move(targetTransform, folderConsumer.ResourceProvider.ResourceContainer, Instantiate(_baseResourceMovementBehaviour));
 		
 		folderConsumer.AddToResourceProvider(folder);
 	}
 
 	private void OnMoveRoutineFinished(BaseResource resource)
 	{
-		resource.UnloadMovementBehaviour.OnMoveRoutineFinished -= OnMoveRoutineFinished;
+		resource.OnMovementFinished -= OnMoveRoutineFinished;
 		_updatedFormationController.UpdateResourcesPosition(_deliverer.Container);
 	}
 }
