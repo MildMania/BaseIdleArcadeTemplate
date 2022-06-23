@@ -16,7 +16,7 @@ public class SingleMoneyDropBehaviour : MonoBehaviour
 
 	[SerializeField] private float _dropDuration;
 
-	private void Awake()
+	private void Start()
 	{
 		DropMoneys();
 	}

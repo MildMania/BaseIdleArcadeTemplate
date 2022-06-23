@@ -1001,7 +1001,7 @@ MonoBehaviour:
   _aiInteraction: {fileID: 4652880170874033480}
   _resourceProvider: {fileID: 128542862997628849}
   _updatedFormationController: {fileID: 128542864502475836}
-  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: 20eb13af96d9c7f4386fe3b665a0cdda, type: 2}
 --- !u!114 &128542863719392402
 MonoBehaviour:
   m_ObjectHideFlags: 0
