@@ -599,7 +599,7 @@ MonoBehaviour:
     _taskCarrier: {fileID: 0}
   _updatedFormationController: {fileID: 7200621567421375389}
   _aiInteraction: {fileID: 2134797717107222006}
-  _baseResourceMovementBehaviour: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
+  _baseResourceMovementBehaviour: {fileID: 11400000, guid: 20eb13af96d9c7f4386fe3b665a0cdda, type: 2}
   _baseResourceProvider: {fileID: 7200621566613189951}
 --- !u!114 &7200621567328538184
 MonoBehaviour:
@@ -1121,7 +1121,7 @@ PrefabInstance:
     - target: {fileID: 3234277590739869622, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
       propertyPath: _baseResourceMovementBehaviour
       value: 
-      objectReference: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
+      objectReference: {fileID: 11400000, guid: 20eb13af96d9c7f4386fe3b665a0cdda, type: 2}
     - target: {fileID: 3234277591191653136, guid: 9b830ed59f83ea447929acdb65b6c04a, type: 3}
       propertyPath: m_Mesh
       value: 

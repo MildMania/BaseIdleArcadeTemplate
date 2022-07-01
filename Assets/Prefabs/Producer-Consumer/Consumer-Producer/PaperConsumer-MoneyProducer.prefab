@@ -269,7 +269,7 @@ PrefabInstance:
     - target: {fileID: 7678804737101695223, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
       propertyPath: _baseResourceMovementBehaviour
       value: 
-      objectReference: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
+      objectReference: {fileID: 11400000, guid: 20eb13af96d9c7f4386fe3b665a0cdda, type: 2}
     - target: {fileID: 7678804737234371677, guid: 16fc4c5f3824d0c479fc175a0a97a075, type: 3}
       propertyPath: _paperProvider
       value: 
@@ -444,7 +444,7 @@ PrefabInstance:
     - target: {fileID: 3334096973536705353, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
       propertyPath: _baseResourceMovementBehaviour
       value: 
-      objectReference: {fileID: 11400000, guid: b5254004efe6bec4f991a5f5e1dc0a8e, type: 2}
+      objectReference: {fileID: 11400000, guid: 20eb13af96d9c7f4386fe3b665a0cdda, type: 2}
     - target: {fileID: 3334096973572205696, guid: e6686baefc1b2a2458f0c66bc93b4668, type: 3}
       propertyPath: m_Mesh
       value: 
