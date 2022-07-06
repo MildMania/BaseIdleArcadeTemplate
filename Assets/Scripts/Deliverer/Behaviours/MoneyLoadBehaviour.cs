@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
 {
     [SerializeField] private CoinWorthCollector _coinWorthCollector;
     [SerializeField] private MoneyProducerFovController _moneyProducerFovController;
+
+    public Action<Money> OnMoneyLoaded;
 
     protected override void OnAwakeCustomActions()
     {
@@ -36,5 +39,6 @@ public class MoneyLoadBehaviour : BaseLoadBehaviour<MoneyProducer, Money>
         money.OnMovementFinished -= OnMoveRoutineFinished;
         var worthDefiner = money.GetComponent<CoinWorthDefiner>();
         _coinWorthCollector.CollectWorth(new CoinWorth(worthDefiner.Coin, worthDefiner.Count));
+        OnMoneyLoaded?.Invoke(money);
     }
 }

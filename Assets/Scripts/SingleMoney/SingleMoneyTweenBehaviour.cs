@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SingleMoneyTweenBehaviour : MonoBehaviour
 {
+    [SerializeField] private MoneyLoadBehaviour _moneyLoadBehaviour;
+
     [SerializeField] private GameObject _moneyImagePrefab;
     [SerializeField] private Transform _spawnTransform;
 
@@ -13,6 +15,29 @@ public class SingleMoneyTweenBehaviour : MonoBehaviour
 
     public RectTransform TweenArea => _tweenArea;
 
+    private void Awake()
+    {
+        if (_moneyLoadBehaviour != null)
+        {
+            _moneyLoadBehaviour.OnMoneyLoaded += OnMoneyLoaded;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_moneyLoadBehaviour != null)
+        {
+            _moneyLoadBehaviour.OnMoneyLoaded -= OnMoneyLoaded;
+        }
+    }
+
+    private void OnMoneyLoaded(Money money)
+    {
+        Vector3 coinScreenPosition =
+            GameUtilities.GetWorldToScreenSpace(money.transform.position,
+                CameraManager.Instance.MainCamera, _tweenArea);
+        TweenMoney(coinScreenPosition);
+    }
 
     public void TweenMoney(Vector3 spawnPosition)
     {
@@ -25,8 +50,5 @@ public class SingleMoneyTweenBehaviour : MonoBehaviour
         {
             Destroy(moneyImageObject);
         });
-        
     }
-
-
 }
