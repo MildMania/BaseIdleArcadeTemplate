@@ -17,7 +17,7 @@
                 || !equippable.Equippable.IsEquipped)
                 return;
 
-            //UnityEngine.Debug.Log("Equippable: " + trackable.TrackData.TrackID.ToString());
+            //Logger.Log("Equippable: " + trackable.TrackData.TrackID.ToString());
 
             equipper.Equipper.TryEquip(equippable);
         }

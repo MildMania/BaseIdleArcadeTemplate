@@ -221,7 +221,7 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
 		
 		void onSavedCallback()
 		{
-			Debug.Log("SAVED!!!");
+			Logger.Log("SAVED!!!");
 		}
 
 		return isUnlock;
@@ -248,18 +248,18 @@ public class UnlockableObject : SerializedMonoBehaviour, IUnlockable
         if (_characterRb != null && Physics.CheckBox(_unwalkableCollider.bounds.center, _unwalkableCollider.bounds.extents, Quaternion.identity, _bitmask))
         {
             GraphNode node;
-			//Debug.Log($"character position BEFORE update {_characterRb.transform.position}");
+			//Logger.Log($"character position BEFORE update {_characterRb.transform.position}");
             CoroutineRunner.Instance.WaitForSeconds(0.1f, () =>
             {
                 node = AstarPath.active.GetNearest(_characterRb.transform.position, NNConstraint.Default).node;
                 Vector3 transportPos = (Vector3)node.position;
-				//Debug.Log($"character position AFTER update {transportPos}");
+				//Logger.Log($"character position AFTER update {transportPos}");
 				_characterRb.transform.DOMove(transportPos, 0.4f);
             });
         }
         else
         {
-			Debug.LogWarning("Character rigid body cannot be found");
+			Logger.LogWarning("Character rigid body cannot be found");
         }
     }
 

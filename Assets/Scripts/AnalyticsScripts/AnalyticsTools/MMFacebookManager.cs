@@ -72,7 +72,7 @@ public class MMFacebookManager
         }
         else
         {
-            Debug.Log("Failed to Initialize the Facebook SDK");
+            Logger.Log("Failed to Initialize the Facebook SDK");
         }
     }
 

@@ -90,7 +90,7 @@ public abstract class Upgradable : SerializedMonoBehaviour
 
         if (IsSatisfyRequirements(UserManager.Instance.LocalUser, RequirementData[_upgradableTrackData.Level]))
         {
-            Debug.Log("UPGRADE FAILED");
+            Logger.Log("UPGRADE FAILED");
 
             var requirementCoin = (RequirementCoin) RequirementData[_upgradableTrackData.Level];
             int totalRequiredAmount = requirementCoin.RequirementData.RequiredAmount;
@@ -115,10 +115,10 @@ public abstract class Upgradable : SerializedMonoBehaviour
 
             void OnSaved()
             {
-                Debug.Log("upgrade saved");
+                Logger.Log("upgrade saved");
             }
 
-            Debug.Log("UPGRADE YAPILDI.");
+            Logger.Log("UPGRADE YAPILDI.");
 
             OnUpgraded?.Invoke(_upgradableTrackData);
             UpgradableManager.Instance.CoinController.UpdateCoinCount();

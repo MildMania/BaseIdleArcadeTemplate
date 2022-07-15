@@ -49,7 +49,7 @@ public class UserManager : MonoBehaviour
 
         int currentCount = trackable.TrackData.CurrentCount;
 		
-        Debug.Log("CURRENT GOLD COUNT" + currentCount);
+        Logger.Log("CURRENT GOLD COUNT" + currentCount);
 
         return currentCount;
     }

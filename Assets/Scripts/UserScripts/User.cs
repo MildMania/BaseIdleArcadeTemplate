@@ -84,7 +84,7 @@ public class User
             onLoadedCallback?.Invoke();
         }
 
-        //UnityEngine.Debug.Log("Load User Data");
+        //Logger.Log("Load User Data");
         foreach (var kvp in _userDataMap)
             kvp.Value.LoadData(onSubDataLoaded);
     }

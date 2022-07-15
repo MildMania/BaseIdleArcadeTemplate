@@ -36,8 +36,8 @@ public class CoinWorthCollector : WorthCollector<CoinWorth>
     
     protected override void CollectWorthCustomActions(CoinWorth coinWorth)
     {
-        Debug.Log("Coin Count : " + coinWorth.Count + " CoinType : " + coinWorth.Coin);
-        Debug.Log("CollectWorthCustomActions");
+        Logger.Log("Coin Count : " + coinWorth.Count + " CoinType : " + coinWorth.Coin);
+        Logger.Log("CollectWorthCustomActions");
         
         Coin trackable;
         _CoinInventory.Tracker.TryGetSingle(ECoin.Gold, out trackable);

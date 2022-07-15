@@ -126,7 +126,7 @@ public class AIHelperLoadState : State<EState, ETransition>
 
     private void OnPathStucked()
     {
-        Debug.Log("STOPPED AT STORE");
+        Logger.Log("STOPPED AT STORE");
         _movementBehaviour.Stop();
 
         FSM.SetTransition(ETransition.Unload);

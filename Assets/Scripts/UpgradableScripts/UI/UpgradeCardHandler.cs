@@ -73,7 +73,7 @@ public class UpgradeCardHandler : MonoBehaviour
             return;
         }
 
-        Debug.Log("UPGRADED LEVEL: " + nextRequirementInfo.Level + " VALUE: " +nextRequirementInfo.Value);
+        Logger.Log("UPGRADED LEVEL: " + nextRequirementInfo.Level + " VALUE: " +nextRequirementInfo.Value);
         _valueText.text = nextRequirementInfo.Value.ToString();
         
         UnlockLevelsUntil(nextRequirementInfo.Level);

@@ -30,13 +30,13 @@ public class FillableCoinRequirement : RequirementCoin, IFillable
 
 		int goldAmount = trackable.TrackData.CurrentCount;
 		
-		Debug.Log("CURRENT GOLD COUNT: " + goldAmount);
+		Logger.Log("CURRENT GOLD COUNT: " + goldAmount);
 
 		int fillAmount;
 		
 		Fillable.Fill(goldAmount,out fillAmount);
 		
-		Debug.Log("FİLL AMOUNT: " + fillAmount);
+		Logger.Log("FİLL AMOUNT: " + fillAmount);
 		
 	}
 }

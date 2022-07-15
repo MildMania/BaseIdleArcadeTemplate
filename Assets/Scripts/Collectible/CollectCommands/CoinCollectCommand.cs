@@ -39,7 +39,7 @@ public class CoinCollectCommand : BaseCollectCommand
 		// Destroy(collectible.gameObject);
 		collectible.gameObject.SetActive(false);
 		OnCollectCommandFinished?.Invoke();
-		Debug.Log("MoveRoutineEND");
+		Logger.Log("MoveRoutineEND");
 		yield return null;
 	}
 }

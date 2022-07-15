@@ -102,7 +102,7 @@ public class PlayerProgressionAnalyticsTracker : MMAnalyticsTrackerBase
     {
         LevelID = GameManager.Instance.GetVirtualLevelID();
 
-        Debug.Log("Level Started: " + LevelID);
+        Logger.Log("Level Started: " + LevelID);
 
         AnalyticsManager.SendCustomEvent(
            new LevelStartedEvent(LevelID));
@@ -110,7 +110,7 @@ public class PlayerProgressionAnalyticsTracker : MMAnalyticsTrackerBase
 
     private void OnLevelCompleted()
     {
-        Debug.Log("Level Completed: " + LevelID);
+        Logger.Log("Level Completed: " + LevelID);
 
         AnalyticsManager.SendCustomEvent(
             new LevelCompletedEvent(LevelID));
@@ -118,7 +118,7 @@ public class PlayerProgressionAnalyticsTracker : MMAnalyticsTrackerBase
     
     private void OnLevelFailed()
     {
-        Debug.Log("Level Failed: " + LevelID);
+        Logger.Log("Level Failed: " + LevelID);
 
         AnalyticsManager.SendCustomEvent(
             new LevelFailedEvent(LevelID));
