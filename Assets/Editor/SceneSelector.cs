@@ -28,8 +28,8 @@ public class SceneSelector : EditorWindow
     }
 
 
-    private static String _pathToScenesPrefix = "Assets/Scenes";
-
+    private static string _pathToScenesPrefix = "Assets/Scenes";
+    private static string _managerSceneName = "ManagerScene";
     private static bool _isUpdated;
 
     [MenuItem("Tools/Scene Selector %#o")]
@@ -84,7 +84,6 @@ public class SceneSelector : EditorWindow
 
         var playButton = new Button(() =>
         {
-            // SceneSelectorSettings.instance.PreviousScenePath = SceneManager.GetActiveScene().path;
             EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
             EditorApplication.EnterPlaymode();
         })
@@ -92,6 +91,20 @@ public class SceneSelector : EditorWindow
             text = "Play"
         };
         buttonGroup.Add(playButton);
+
+        var stopButton = new Button(() =>
+        {
+            if (EditorSceneManager.loadedSceneCount == 1 &&
+                EditorSceneManager.GetActiveScene().path.Equals(scenePath) ||
+                EditorSceneManager.loadedSceneCount == 2 && scenePath.Contains(_managerSceneName))
+            {
+                EditorApplication.ExitPlaymode();
+            }
+        })
+        {
+            text = "Stop"
+        };
+        buttonGroup.Add(stopButton);
     }
 
     private static void CreateButtonGroup(SceneAsset sceneAsset, out VisualElement buttonGroup)
@@ -100,7 +113,7 @@ public class SceneSelector : EditorWindow
         {
             style =
             {
-                width = 150
+                width = 125
             }
         };
 
